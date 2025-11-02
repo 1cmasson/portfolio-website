@@ -2,26 +2,19 @@
 
 ## Contact Console QA Checklist
 - Load `contact.html`; use the skip link to confirm focus jumps to the main landmark and nav retains keyboard visibility.
-- Tab through the form fields — each label remains visible, focus outlines glow neon, and optional phone field is announced as optional.
-- Submit with required fields empty: inline error copy appears beneath each input, `aria-invalid="true"` is set, and the error banner uses `role="alert"` for screen readers.
-- Submit with valid data (e.g., `name=Test User`, `email=test@example.com`, `message=Hello`): the fetch fallback returns a success banner while Netlify records the submission. With JavaScript disabled, the form posts to Netlify’s default thank-you page.
-- Toggle `prefers-reduced-motion` (system preference) and ensure the success banner appears without slide animation; the starfield and other motion respect the existing guardrails.
+- Confirm the primary CTA is a `mailto:` link: activate it with keyboard and mouse to verify an email draft opens with prefilled subject/body hints (behaviour varies by browser/client).
+- With JavaScript enabled, activate the “Copy email” helper; ensure the address hits the clipboard and the inline status message announces success via `aria-live`.
+- Disable JavaScript (or block clipboard permission) and verify the email address remains selectable as plain text with visible focus outlines.
+- Toggle `prefers-reduced-motion` and ensure the CTA retains accessible focus styling without introducing new animations.
 
-## Netlify Email Notifications
-- After deploying, enable email notifications under Netlify → Forms → `contact`. Add an *Email notification* with the destination inbox.
-- Use the Netlify dashboard “Submit test entry” or run:
-  ```bash
-  curl -X POST https://<your-site>.netlify.app/ \
-    --data-urlencode "form-name=contact" \
-    --data-urlencode "name=QA Tester" \
-    --data-urlencode "email=qa@example.com" \
-    --data-urlencode "message=Verifying Netlify delivery"
-  ```
-- Verify submissions appear in the Forms panel and trigger notification emails.
+## Contact Console Notes
+- Default CTA email: `carlos@space.dev` (update to the owner’s preferred inbox). Subject template: `Greetings from Nyan Cat Space`. Body template: friendly greeting + prompt to share project context.
+- Copy helper leverages the Clipboard API; browsers that deny permission fall back to manual copy instructions rendered inline.
+- Optional social links can live inside the console block as secondary actions (keep them keyboard-focusable, minimal motion).
 
 ### Verification Log
-- 2025-11-02 — Deployment confirmed live on Netlify. Email notification toggle still needs manual confirmation; curl smoke test not run in this CLI environment.
-- 2025-11-02 — No honeypot spam attempts logged yet. Plan to retest after enabling notifications and capture Netlify dashboard evidence.
+- 2025-11-02 — Deployment confirmed live. Mailto CTA launches default client on macOS Safari/Chrome; clipboard helper requires manual retest post-deployment (not runnable via CLI).
+- 2025-11-02 — No additional channels configured yet; consider adding social handles before public launch.
 
 ## Sanity Setup Snapshot
 - Copy `.env.example` to `.env` and populate the Sanity keys.

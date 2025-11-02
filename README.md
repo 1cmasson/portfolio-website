@@ -7,7 +7,7 @@ A playful, terminal-inspired personal site that celebrates space vibes, accessib
 - Home hero with Star Wars crawl, Nyan Cat fly-by, and motion toggle.
 - Terminal-styled About page featuring ASCII art, timeline, and skills.
 - Projects page with glassy planet cards and hover/focus effects.
-- Dedicated contact console powered by Netlify Forms with inline success feedback.
+- Dedicated contact console with mailto CTA, clipboard helper, and reduced-motion friendly styling.
 - Blog landing pad ready to render Sanity-published posts (empty state for now).
 - Fully semantic, keyboard-navigable layout with skip links and ARIA labels.
 
@@ -36,19 +36,10 @@ Populate the following keys (drawn from the “Using Sanity.io with Vanilla Java
 
 Credentials remain local; the static site reads them at runtime via the upcoming Sanity helper.
 
-## Netlify Form Delivery
-- Deploy the site to Netlify and visit **Site settings → Forms** to confirm the `contact` form is detected.
-- Enable email notifications (Forms → `contact` → Notifications → *Add notification*) and point it to your inbox.
-- Spam protection relies on the built-in honeypot field; keep the hidden `bot-field` input untouched.
-- Test delivery with the dashboard’s “Submit test entry” button or via cURL:
-  ```bash
-  curl -X POST https://<your-site>.netlify.app/ \
-    --data-urlencode "form-name=contact" \
-    --data-urlencode "name=QA Tester" \
-    --data-urlencode "email=qa@example.com" \
-    --data-urlencode "message=Verifying Netlify delivery from README"
-  ```
-- Without JavaScript, Netlify shows its default thank-you page; with JavaScript, the inline success banner confirms receipt without a redirect.
+## Contact CTA Workflow
+- The primary button on `contact.html` opens a `mailto:` draft prefilled with the owner’s email, subject, and greeting. Update the address and copy in the markup to match your inbox.
+- A secondary “Copy email” helper uses the Clipboard API; browsers without permission show a manual copy hint instead. Keep the plain-text address visible for no-JS visitors.
+- Optional additional channels (e.g., Mastodon, LinkedIn) can be added as focusable links in the console block; maintain contrast and skip-link behaviour when doing so.
 
 ## Styling Workflow
 - Utility classes come from a precompiled Tailwind bundle (`styles/tailwind-base.css`) generated with the CLI.

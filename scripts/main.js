@@ -258,168 +258,82 @@ function notifyMotionSubscribers() {
 }
 
 /**
- * Progressive enhancement for the Netlify-powered contact form.
+ * Progressive enhancement for the email-first contact console.
  */
-function initContactForm() {
-  const form = document.querySelector('[data-contact-form]');
-  if (!form) return () => {};
+function initContactConsole() {
+  const consoleBlock = document.querySelector('[data-contact-console]');
+  if (!consoleBlock) return () => {};
 
-  const successBanner = form.querySelector('[data-form-success]');
-  const errorBanner = form.querySelector('[data-form-error]');
-  const errorText = form.querySelector('[data-form-error-text]');
-  const submitButton = form.querySelector('[data-submit-button]');
-  const controllableFields = Array.from(form.querySelectorAll('input[name], textarea[name]')).filter(
-    (field) => field.name && field.name !== 'bot-field' && field.type !== 'hidden',
-  );
+  const copyButton = consoleBlock.querySelector('[data-copy-email]');
+  const status = consoleBlock.querySelector('[data-copy-status]');
+  const addressNode = consoleBlock.querySelector('[data-contact-address]');
+  const mailtoButton = consoleBlock.querySelector('[data-mailto-button]');
+  const email = addressNode ? addressNode.textContent.trim() : '';
+  const hasClipboard = Boolean(navigator.clipboard && typeof navigator.clipboard.writeText === 'function');
 
-  const toggleBanner = (banner, isVisible) => {
-    if (!banner) return;
-    if (isVisible) {
-      banner.dataset.hidden = 'false';
-      banner.style.display = 'flex';
-      banner.setAttribute('tabindex', '-1');
-      banner.focus({ preventScroll: state.reducedMotion });
-      window.requestAnimationFrame(() => {
-        banner.removeAttribute('tabindex');
-      });
-    } else {
-      banner.dataset.hidden = 'true';
-      banner.style.display = 'none';
-      banner.removeAttribute('tabindex');
+  const setStatus = (message, tone = 'info') => {
+    if (!status) return;
+    status.textContent = message;
+    status.dataset.tone = tone;
+  };
+
+  if (status) {
+    status.textContent = 'Transmission status will appear here after copying the address.';
+    status.dataset.tone = 'info';
+  }
+
+  const focusAddress = () => {
+    if (!addressNode) return;
+    if (typeof addressNode.focus === 'function') {
+      addressNode.focus({ preventScroll: state.reducedMotion });
     }
   };
 
-  const setFieldError = (field, message) => {
-    if (!field || !field.id) return;
-    const errorNode = form.querySelector(`#${field.id}-error`);
-    if (!errorNode) return;
-
-    if (message) {
-      errorNode.textContent = message;
-      errorNode.hidden = false;
-      field.setAttribute('aria-invalid', 'true');
-    } else {
-      errorNode.textContent = '';
-      errorNode.hidden = true;
-      field.removeAttribute('aria-invalid');
-    }
-  };
-
-  const validateFields = () => {
-    let valid = true;
-    controllableFields.forEach((field) => {
-      const value = (field.value || '').trim();
-      let message = '';
-
-      if (value !== field.value) {
-        field.value = value;
-      }
-
-      if (field.name === 'name') {
-        if (!value) message = 'Please share your name.';
-      } else if (field.name === 'email') {
-        if (!value) {
-          message = 'Email is required so Carlos can reply.';
-        } else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value)) {
-          message = 'Enter a valid email address.';
-        }
-      } else if (field.name === 'message') {
-        if (!value) message = 'Let us know how we can collaborate or connect.';
-      } else if (field.name === 'phone' && value) {
-        if (!/^[+()\-\s0-9]{7,}$/.test(value)) {
-          message = 'Phone numbers may include digits, spaces, plus sign, and parentheses.';
-        }
-      }
-
-      setFieldError(field, message);
-      if (message) valid = false;
-    });
-    return valid;
-  };
-
-  const setBusyState = (isBusy) => {
-    if (isBusy) {
-      form.setAttribute('aria-busy', 'true');
-    } else {
-      form.removeAttribute('aria-busy');
-    }
-    if (submitButton) submitButton.disabled = isBusy;
-  };
-
-  const handleSuccess = () => {
-    toggleBanner(errorBanner, false);
-    toggleBanner(successBanner, true);
-    form.reset();
-    controllableFields.forEach((field) => setFieldError(field, ''));
-  };
-
-  const handleError = (message) => {
-    if (errorText && message) {
-      errorText.textContent = message;
-    }
-    toggleBanner(successBanner, false);
-    toggleBanner(errorBanner, true);
-  };
-
-  const onInput = (event) => {
-    const target = event.target;
-    if (!controllableFields.includes(target)) return;
-    setFieldError(target, '');
-    toggleBanner(errorBanner, false);
-    toggleBanner(successBanner, false);
-  };
-
-  controllableFields.forEach((field) => field.addEventListener('input', onInput));
-
-  const onReset = () => {
-    window.requestAnimationFrame(() => {
-      controllableFields.forEach((field) => setFieldError(field, ''));
-      toggleBanner(errorBanner, false);
-      toggleBanner(successBanner, false);
-    });
-  };
-
-  form.addEventListener('reset', onReset);
-
-  const onSubmit = async (event) => {
+  const handleCopy = async (event) => {
     event.preventDefault();
-    toggleBanner(successBanner, false);
-    toggleBanner(errorBanner, false);
+    if (!email) {
+      setStatus('No email available to copy.', 'error');
+      return;
+    }
 
-    if (!validateFields()) {
-      handleError('Please fix the highlighted fields before resubmitting.');
+    if (!hasClipboard) {
+      setStatus('Clipboard unsupported. Highlight the address and copy manually.', 'info');
+      focusAddress();
       return;
     }
 
     try {
-      setBusyState(true);
-      const formData = new FormData(form);
-      const encoded = new URLSearchParams(formData).toString();
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encoded,
-      });
-
-      if (response.ok) {
-        handleSuccess();
-      } else {
-        throw new Error(`Netlify responded with ${response.status}`);
-      }
+      await navigator.clipboard.writeText(email);
+      setStatus('Email copied. Paste it into your mission console.', 'success');
     } catch (error) {
-      console.error('Contact form submission failed', error);
-      handleError('The transmission could not be delivered. Try again in a moment or email carlos@space.dev.');
-    } finally {
-      setBusyState(false);
+      console.error('Contact email copy failed', error);
+      setStatus('Copy failed. Highlight and copy manually instead.', 'error');
+      focusAddress();
     }
   };
 
-  form.addEventListener('submit', onSubmit);
+  const handleMailtoFocus = () => {
+    setStatus('Opening your mail client in a new window or tab.', 'info');
+  };
+
+  if (copyButton) {
+    copyButton.addEventListener('click', handleCopy);
+    if (!hasClipboard) {
+      copyButton.setAttribute('aria-describedby', 'contact-address-label');
+    }
+  }
+
+  if (mailtoButton) {
+    mailtoButton.addEventListener('click', handleMailtoFocus);
+  }
 
   return () => {
-    form.removeEventListener('submit', onSubmit);
-    form.removeEventListener('reset', onReset);
-    controllableFields.forEach((field) => field.removeEventListener('input', onInput));
+    if (copyButton) {
+      copyButton.removeEventListener('click', handleCopy);
+    }
+    if (mailtoButton) {
+      mailtoButton.removeEventListener('click', handleMailtoFocus);
+    }
   };
 }
 
@@ -431,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let cleanupStarfield = initStarfield();
   const cleanupNyan = initNyanCat();
   const cleanupCrawl = initCrawl();
-  const cleanupContact = initContactForm();
+  const cleanupContact = initContactConsole();
   initMotionControls();
 
   window.addEventListener('storage', (event) => {
