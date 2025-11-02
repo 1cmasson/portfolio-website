@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-terminal">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nyan Cat Space — Cosmic Terminal Portfolio</title>
+    <meta
+      name="description"
+      content="Explore Nyan Cat Space, a terminal-inspired portfolio floating through the cosmos with starfields, Nyan Cat fly-bys, and projects orbiting in neon glow."
+    />
+    <link rel="preload" href="assets/nyan/nyan-cat.gif" as="image" />
+    <link rel="stylesheet" href="styles/tailwind-base.css" />
+    <link rel="stylesheet" href="styles/tailwind.css" />
+  </head>
+  <body class="bg-space text-neon-green font-terminal min-h-screen overflow-x-hidden antialiased scroll-snap">
+    <a class="skip-link" href="#main-content">Skip to cosmic content</a>
+
+    <canvas class="starfield-canvas" data-starfield aria-hidden="true"></canvas>
+    <div
+      class="nyan-container"
+      data-nyan
+      role="img"
+      aria-label="Nyan Cat streaks across the galaxy trailing pixelated rainbows."
+    >
+      <img src="assets/nyan/nyan-cat.gif" alt="" />
+    </div>
+
+    <header class="relative z-10">
+      <nav class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+        <p class="text-sm uppercase tracking-[0.35em] text-neon-amber">nyan@space:~$</p>
+        <ul class="flex items-center gap-6 text-sm md:text-base">
+          <li>
+            <a class="hover:text-amber transition" href="about.html" aria-label="Jump to the About log">about</a>
+          </li>
+          <li>
+            <a class="hover:text-amber transition" href="projects.html" aria-label="Warp to the Projects sector"
+              >projects</a
+            >
+          </li>
+          <li>
+            <a class="hover:text-amber transition" href="blog.html" aria-label="View the cosmic blog feed">blog</a>
+          </li>
+          <li>
+            <a class="hover:text-magenta transition" href="contact.html" aria-label="Open contact transmission"
+              >contact</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content" class="relative z-10">
+      <section
+        aria-labelledby="hero-title"
+        class="scroll-section px-6 py-16 md:py-24 lg:py-32 max-w-6xl mx-auto"
+      >
+        <div class="grid lg:grid-cols-[1.2fr,0.8fr] gap-10 items-center">
+          <div class="space-y-8">
+            <p class="text-sm uppercase tracking-[0.35em] text-neon-amber">init launch sequence...</p>
+            <h1 id="hero-title" class="text-4xl md:text-6xl font-semibold leading-tight headline-glow">
+              Nyan Cat Space Terminal
+            </h1>
+            <p class="text-lg md:text-xl text-slate-200/80 max-w-2xl">
+              Welcome aboard the cosmic command line. I&rsquo;m Carlos Masson, a full-stack explorer crafting playful
+              experiences that orbit creativity, accessibility, and delightful UX. This terminal is a repository of
+              adventures launched across the galaxy&mdash;from professional missions to experimental nebulae.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a
+                class="inline-flex items-center gap-2 border border-neon/60 px-5 py-2.5 rounded-lg hover:bg-neon/10 transition focus-visible"
+                href="about.html"
+              >
+                <span class="text-sm font-medium uppercase tracking-[0.25em]">about</span>
+                <span aria-hidden="true">➜</span>
+              </a>
+              <a
+                class="inline-flex items-center gap-2 border border-magenta/50 px-5 py-2.5 rounded-lg hover:bg-magenta/10 transition focus-visible"
+                href="projects.html"
+              >
+                <span class="text-sm font-medium uppercase tracking-[0.25em]">projects</span>
+                <span aria-hidden="true">☄️</span>
+              </a>
+              <button
+                type="button"
+                class="inline-flex items-center gap-2 border border-amber/60 px-5 py-2.5 rounded-lg hover:bg-amber/10 transition focus-visible opacity-40"
+                data-motion-toggle="animated"
+                aria-pressed="true"
+              >
+                <span class="text-sm font-medium uppercase tracking-[0.25em]">animations</span>
+                <span aria-hidden="true">ON</span>
+              </button>
+              <button
+                type="button"
+                class="inline-flex items-center gap-2 border border-slate-200/50 px-5 py-2.5 rounded-lg hover:bg-slate-200/10 transition focus-visible"
+                data-motion-toggle="reduced"
+                aria-pressed="false"
+              >
+                <span class="text-sm font-medium uppercase tracking-[0.25em]">animations</span>
+                <span aria-hidden="true">OFF</span>
+              </button>
+            </div>
+          </div>
+          <aside class="console-block space-y-6" data-crawl>
+            <header>star wars crawl</header>
+            <div class="crawl-text" aria-live="polite">
+              <div class="crawl-inner space-y-6" data-crawl-inner>
+                <p class="text-neon-amber">A long time ago in a galaxy far, far away...</p>
+                <p>
+                  A curious developer cat learned that the best way to ship delightful software was to pilot every
+                  console with empathy, performance, and rhythm. This repo chronicles journeys through SaaS nebulae,
+                  creative hackathons, and cosmic art experiments.
+                </p>
+                <p class="text-neon-magenta">
+                  Scroll to explore planets containing professional missions, tinkering labs, and collaborations orbiting
+                  the stars.
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              data-crawl-toggle
+              class="inline-flex items-center gap-2 border border-amber/60 px-4 py-2 rounded-lg hover:bg-amber/10 transition text-sm uppercase tracking-[0.3em] focus-visible"
+              aria-pressed="true"
+            >
+              <span aria-hidden="true">⏸</span>
+              pause crawl
+            </button>
+          </aside>
+        </div>
+      </section>
+
+      <section class="scroll-section px-6 py-20 md:py-28 bg-black/40">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-start">
+          <div class="space-y-6">
+            <h2 class="text-3xl md:text-4xl font-semibold headline-glow">Captain&rsquo;s log preview</h2>
+            <p class="text-slate-200/80 leading-relaxed">
+              The About section reads like a system diary: missions shipped, technologies mastered, and favorite cosmic
+              companions. Expect ASCII art, command-line output, and the occasional easter egg.
+            </p>
+            <ul class="space-y-3 text-sm text-slate-200/80">
+              <li class="timeline-entry">Highlights from leading design systems and web platform teams</li>
+              <li class="timeline-entry">Experiments involving generative art, retro UI, and playful hardware</li>
+              <li class="timeline-entry">Personal coordinates to collaborate or send space mail</li>
+            </ul>
+            <a
+              class="inline-flex items-center gap-2 border border-neon/60 px-4 py-2 rounded-lg hover:bg-neon/10 transition focus-visible"
+              href="about.html"
+            >
+              enter log
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <div class="console-block">
+            <header>sample output</header>
+            <pre class="text-sm md:text-base text-slate-200/90 whitespace-pre-wrap">
+nyan@space:~$ cat experience.log
+
+> 2019-2021
+  led frontend squads @ hyperdrive labs
+  accelerated design system adoption to warp 9
+
+> 2021-2024
+  piloted platform guilds for nebulous startups
+  delivered resilient web tooling with cosmic uptime
+
+> Present
+  crafting playful experiments with accessibility at the helm</pre
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="scroll-section px-6 py-20 md:py-28">
+        <div class="max-w-6xl mx-auto space-y-10">
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div>
+              <h2 class="text-3xl md:text-4xl font-semibold headline-glow">Projects in orbit</h2>
+              <p class="text-slate-200/80 max-w-2xl">
+                Each planet is a project log with mission details. Hover or tab to feel the gravitational pulse.
+              </p>
+            </div>
+            <a
+              class="self-start md:self-auto inline-flex items-center gap-2 border border-magenta/50 px-4 py-2 rounded-lg hover:bg-magenta/10 transition focus-visible"
+              href="projects.html"
+            >
+              view all
+              <span aria-hidden="true">☄</span>
+            </a>
+          </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <article class="planet-card" aria-label="Project: Terminal Nebula">
+              <header class="flex items-center justify-between mb-4">
+                <span class="planet-emoji" aria-hidden="true">🪐</span>
+                <h3 class="text-xl font-semibold text-neon-green">Terminal Nebula</h3>
+              </header>
+              <p class="text-sm text-slate-200/80">
+                Multiplayer coding playground built for hackathons, featuring real-time pair programming and cosmic
+                themes.
+              </p>
+            </article>
+            <article class="planet-card" aria-label="Project: Rainbow Drive">
+              <header class="flex items-center justify-between mb-4">
+                <span class="planet-emoji" aria-hidden="true">🌈</span>
+                <h3 class="text-xl font-semibold text-neon-green">Rainbow Drive</h3>
+              </header>
+              <p class="text-sm text-slate-200/80">
+                Hardware art installation synchronizing LED matrices with synthesized chip tunes and catnip-scented
+                sensors.
+              </p>
+            </article>
+            <article class="planet-card" aria-label="Project: Galactic Docs API">
+              <header class="flex items-center justify-between mb-4">
+                <span class="planet-emoji" aria-hidden="true">🛰️</span>
+                <h3 class="text-xl font-semibold text-neon-green">Galactic Docs API</h3>
+              </header>
+              <p class="text-sm text-slate-200/80">
+                Microservice knowledge base that renders Markdown to terminal dashboards for mission control teams.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="relative z-10 border-t border-neon/20 bg-black/60">
+      <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="uppercase tracking-[0.3em] text-sm text-neon-amber">open transmission</p>
+          <p class="text-slate-200/80">
+            Email:
+            <a href="mailto:carlos@space.dev" class="underline focus-visible">carlos@space.dev</a>
+          </p>
+          <p class="text-slate-200/60 text-sm mt-2">
+            Built with accessibility, cosmic whimsy, and a sprinkle of rainbow pop-tarts.
+          </p>
+        </div>
+        <div class="flex gap-4 text-sm">
+          <a class="hover:text-amber transition focus-visible" href="https://github.com/1cmasson" target="_blank" rel="noopener"
+            >GitHub</a
+          >
+          <a class="hover:text-amber transition focus-visible" href="https://www.linkedin.com/in/carlosmasson" target="_blank" rel="noopener"
+            >LinkedIn</a
+          >
+          <a class="hover:text-magenta transition focus-visible" href="about.html">About</a>
+          <a class="hover:text-magenta transition focus-visible" href="projects.html">Projects</a>
+          <a class="hover:text-magenta transition focus-visible" href="blog.html">Blog</a>
+          <a class="hover:text-magenta transition focus-visible" href="contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="scripts/main.js" defer></script>
+  </body>
+</html>

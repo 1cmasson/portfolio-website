@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-terminal">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog — Nyan Cat Space Terminal</title>
+    <meta
+      name="description"
+      content="Explore published transmissions from the Nyan Cat Space blog once the Sanity link is complete."
+    />
+    <!-- Inject values via Netlify environment variables, meta tags, or a runtime config script -->
+    <meta name="sanity-project-id" content="" />
+    <meta name="sanity-dataset" content="production" />
+    <meta name="sanity-api-version" content="2024-01-01" />
+    <meta name="sanity-read-token" content="" />
+    <link rel="stylesheet" href="styles/tailwind-base.css" />
+    <link rel="stylesheet" href="styles/tailwind.css" />
+  </head>
+  <body class="bg-space text-neon-green font-terminal min-h-screen overflow-x-hidden antialiased">
+    <a class="skip-link" href="#blog-main">Skip to blog feed</a>
+    <canvas class="starfield-canvas" data-starfield aria-hidden="true"></canvas>
+    <div
+      class="nyan-container"
+      data-nyan
+      role="img"
+      aria-label="Nyan Cat ferries new blog posts across the galaxy."
+    >
+      <img src="assets/nyan/nyan-cat.gif" alt="" />
+    </div>
+
+    <header class="relative z-10">
+      <nav class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+        <a class="text-sm uppercase tracking-[0.35em] text-neon-amber hover:text-amber transition" href="index.html"
+          >nyan@space:~$</a
+        >
+        <ul class="flex items-center gap-6 text-sm md:text-base">
+          <li>
+            <a class="hover:text-amber transition" href="index.html">home</a>
+          </li>
+          <li>
+            <a class="hover:text-amber transition" href="about.html">about</a>
+          </li>
+          <li>
+            <a class="hover:text-amber transition" href="projects.html">projects</a>
+          </li>
+          <li>
+            <a class="text-neon-amber" aria-current="page" href="blog.html">blog</a>
+          </li>
+          <li>
+            <a class="hover:text-magenta transition" href="contact.html">contact</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="blog-main" class="relative z-10 px-6 py-16 md:py-24">
+      <div class="max-w-6xl mx-auto space-y-12">
+        <section aria-labelledby="blog-hero" class="space-y-6">
+          <p class="text-sm uppercase tracking-[0.35em] text-neon-amber">captain's log</p>
+          <h1 id="blog-hero" class="text-4xl md:text-5xl font-semibold headline-glow">Blog Launch Pad</h1>
+          <p class="text-slate-200/80 text-lg max-w-3xl">
+            Published transmissions from across the cosmos appear here whenever the Sanity bridge is configured. Expect
+            case studies, creative coding breakdowns, and mission retrospectives in reverse chronological order.
+          </p>
+        </section>
+
+        <section aria-labelledby="blog-preview" class="console-block space-y-6" data-blog-container>
+          <header id="blog-preview">incoming entries</header>
+          <div
+            class="status-banner"
+            data-status="error"
+            data-blog-error
+            data-hidden="true"
+            role="alert"
+          >
+            <span aria-hidden="true">⚠</span>
+            <div>
+              <p class="font-semibold uppercase tracking-[0.25em] text-xs">sanity fetch failed</p>
+              <p class="text-sm" data-blog-error-text>
+                Unable to retrieve posts from Sanity. Check credentials and try again later.
+              </p>
+            </div>
+          </div>
+
+          <p class="terminal-hint" data-blog-loading>Loading published posts from Sanity…</p>
+
+          <div class="space-y-6" data-blog-empty>
+            <p class="text-sm text-slate-200/80">
+              The feed is idle. Add published posts in Sanity or populate the environment variables referenced by
+              `.env.example`. Once configured, refresh to see entries appear here automatically.
+            </p>
+            <p class="text-xs text-slate-200/60">
+              Tip: follow the instructions in `specs/002-build-dedicated-contact/quickstart.md` to verify configuration.
+            </p>
+          </div>
+
+          <ul class="blog-post-list" data-blog-list hidden></ul>
+        </section>
+      </div>
+    </main>
+
+    <footer class="relative z-10 border-t border-neon/20 bg-black/60">
+      <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <p class="text-sm text-slate-200/70">© 2025 Carlos Masson — returning soon with cosmic blog posts.</p>
+        <div class="flex flex-wrap gap-4 text-sm">
+          <a class="hover:text-magenta transition focus-visible" href="index.html">Home</a>
+          <a class="hover:text-magenta transition focus-visible" href="about.html">About</a>
+          <a class="hover:text-magenta transition focus-visible" href="projects.html">Projects</a>
+          <a class="hover:text-magenta transition focus-visible" href="contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="scripts/main.js" defer></script>
+    <script type="module">
+      import { fetchSanityPosts, getSanityConfig } from './scripts/cms/sanity-client.js';
+
+      const container = document.querySelector('[data-blog-container]');
+      if (!container) {
+        console.warn('[blog] Blog container not found.');
+      } else {
+        const list = container.querySelector('[data-blog-list]');
+        const emptyState = container.querySelector('[data-blog-empty]');
+        const loading = container.querySelector('[data-blog-loading]');
+        const errorBanner = container.querySelector('[data-blog-error]');
+        const errorText = container.querySelector('[data-blog-error-text]');
+
+        const toggle = (el, show, { display = 'block' } = {}) => {
+          if (!el) return;
+          if (show) {
+            el.hidden = false;
+            el.style.display = display;
+            if ('hidden' in el.dataset) {
+              el.dataset.hidden = 'false';
+            }
+          } else {
+            el.hidden = true;
+            el.style.display = 'none';
+            if ('hidden' in el.dataset) {
+              el.dataset.hidden = 'true';
+            }
+          }
+        };
+
+        const renderPosts = (posts) => {
+          if (!list) return;
+          list.innerHTML = '';
+          posts.forEach((post) => {
+            const item = document.createElement('li');
+            item.className = 'console-block blog-post-card';
+
+            const article = document.createElement('article');
+            article.setAttribute('aria-labelledby', `post-${post.id}`);
+
+            const title = document.createElement('h2');
+            title.id = `post-${post.id}`;
+            title.className = 'blog-post-title';
+            title.textContent = post.title;
+
+            const meta = document.createElement('p');
+            meta.className = 'blog-post-meta';
+            const publishedDate = post.publishedAt
+              ? new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(new Date(post.publishedAt))
+              : 'Unscheduled';
+            meta.textContent = `Published ${publishedDate}`;
+
+            const excerpt = document.createElement('p');
+            excerpt.className = 'blog-post-excerpt';
+            excerpt.textContent = post.excerpt || 'Stay tuned for the full mission briefing.';
+
+            article.appendChild(title);
+            article.appendChild(meta);
+            article.appendChild(excerpt);
+
+            if (post.tags && post.tags.length > 0) {
+              const tagList = document.createElement('ul');
+              tagList.className = 'blog-post-tags';
+              post.tags.forEach((tag) => {
+                const li = document.createElement('li');
+                li.className = 'blog-post-tag';
+                li.textContent = tag;
+                tagList.appendChild(li);
+              });
+              article.appendChild(tagList);
+            }
+
+            item.appendChild(article);
+            list.appendChild(item);
+          });
+        };
+
+        const config = getSanityConfig();
+        const hasConfig = Boolean(config.projectId && config.dataset && config.apiVersion);
+
+        if (!hasConfig) {
+          if (loading) loading.textContent = 'Sanity credentials are missing. Update `.env` or runtime config to enable the feed.';
+          toggle(emptyState, true, { display: 'block' });
+          toggle(list, false);
+          toggle(errorBanner, false);
+        } else {
+          (async () => {
+            try {
+              toggle(loading, true, { display: 'block' });
+              toggle(errorBanner, false);
+              const posts = await fetchSanityPosts();
+
+              if (Array.isArray(posts) && posts.length > 0) {
+                renderPosts(posts);
+                toggle(emptyState, false);
+                toggle(list, true, { display: 'grid' });
+              } else {
+                toggle(emptyState, true, { display: 'block' });
+                toggle(list, false);
+              }
+            } catch (error) {
+              console.error('[blog] Failed to render posts', error);
+              if (errorText) {
+                errorText.textContent = 'Unable to fetch posts right now — please retry or verify Sanity credentials.';
+              }
+              toggle(errorBanner, true, { display: 'flex' });
+            } finally {
+              toggle(loading, false);
+            }
+          })();
+        }
+      }
+    </script>
+  </body>
+</html>

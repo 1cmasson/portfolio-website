@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-terminal">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About — Nyan Cat Space Terminal</title>
+    <meta
+      name="description"
+      content="Learn about Carlos Masson’s cosmic adventures: experience log, skills, and interests wrapped in a terminal UI."
+    />
+    <link rel="stylesheet" href="styles/tailwind-base.css" />
+    <link rel="stylesheet" href="styles/tailwind.css" />
+  </head>
+  <body class="bg-space text-neon-green font-terminal min-h-screen overflow-x-hidden antialiased">
+    <a class="skip-link" href="#about-main">Skip to log</a>
+    <canvas class="starfield-canvas" data-starfield aria-hidden="true"></canvas>
+    <div
+      class="nyan-container"
+      data-nyan
+      role="img"
+      aria-label="Nyan Cat loops through the about page with a rainbow trail."
+    >
+      <img src="assets/nyan/nyan-cat.gif" alt="" />
+    </div>
+
+    <header class="relative z-10">
+      <nav class="max-w-5xl mx-auto px-6 py-6 flex items-center justify-between">
+        <a class="text-sm uppercase tracking-[0.35em] text-neon-amber hover:text-amber transition" href="index.html"
+          >nyan@space:~$</a
+        >
+        <ul class="flex items-center gap-6 text-sm md:text-base">
+          <li>
+            <a class="hover:text-amber transition" href="index.html" aria-label="Return to command center">home</a>
+          </li>
+          <li>
+            <a class="hover:text-magenta transition" href="projects.html" aria-label="Warp to project orbit"
+              >projects</a
+            >
+          </li>
+          <li>
+            <a class="hover:text-amber transition" href="blog.html" aria-label="View the cosmic blog feed">blog</a>
+          </li>
+          <li>
+            <a class="hover:text-magenta transition" href="contact.html" aria-label="Open contact transmission"
+              >contact</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="about-main" class="relative z-10 px-6 py-16 md:py-24">
+      <div class="max-w-5xl mx-auto space-y-16">
+        <section aria-labelledby="about-heading" class="space-y-6">
+          <p class="text-sm uppercase tracking-[0.35em] text-neon-amber">whoami</p>
+          <h1 id="about-heading" class="text-4xl md:text-5xl font-semibold headline-glow">Carlos Masson</h1>
+          <p class="text-slate-200/80 text-lg leading-relaxed max-w-3xl">
+            I&rsquo;m a full-stack engineer and creative technologist who loves mixing accessibility, storytelling, and
+            playful aesthetics. My happy place is shipping features that make people grin while staying fast, reliable,
+            and inclusive.
+          </p>
+        </section>
+
+        <section aria-labelledby="experience-heading" class="console-block space-y-6">
+          <header id="experience-heading">missions accomplished</header>
+          <ol class="space-y-4 text-sm md:text-base text-slate-200/90">
+            <li class="timeline-entry">
+              <div class="flex flex-col gap-1">
+                <span class="text-neon-amber font-semibold uppercase tracking-[0.25em]">2019 &ndash; 2021</span>
+                <span>Hyperdrive Labs — engineered a multi-tenant design system adopted by 12+ product squads.</span>
+              </div>
+            </li>
+            <li class="timeline-entry">
+              <div class="flex flex-col gap-1">
+                <span class="text-neon-amber font-semibold uppercase tracking-[0.25em]">2021 &ndash; 2024</span>
+                <span>Quasar Collective — led platform guilds modernizing legacy stacks into resilient Jamstack apps.</span>
+              </div>
+            </li>
+            <li class="timeline-entry">
+              <div class="flex flex-col gap-1">
+                <span class="text-neon-amber font-semibold uppercase tracking-[0.25em]">Present</span>
+                <span>Independent explorer — prototyping whimsical experiences, mentoring devs, and co-hosting creative code jams.</span>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <section aria-labelledby="skills-heading" class="grid md:grid-cols-2 gap-8">
+          <article class="console-block space-y-4">
+            <header id="skills-heading">skill matrix</header>
+            <ul class="space-y-2 text-sm md:text-base text-slate-200/90">
+              <li class="timeline-entry">TypeScript, JavaScript, React, Vue, Astro</li>
+              <li class="timeline-entry">CSS architecture, design systems, Tailwind</li>
+              <li class="timeline-entry">Accessibility audits, WCAG 2.1 AA remediation</li>
+              <li class="timeline-entry">Canvas animations, creative coding, shaders</li>
+              <li class="timeline-entry">DX tooling, component libraries, Storybook</li>
+            </ul>
+          </article>
+          <article class="console-block space-y-4">
+            <header>fun experiments</header>
+            <ul class="space-y-2 text-sm md:text-base text-slate-200/90">
+              <li class="timeline-entry">Generative pixel art cat planets</li>
+              <li class="timeline-entry">Retro terminal streaming overlays</li>
+              <li class="timeline-entry">DIY synthesizer with laser-cut enclosure</li>
+              <li class="timeline-entry">Interactive story zines in DWEB</li>
+              <li class="timeline-entry">Solar-powered web installations</li>
+            </ul>
+          </article>
+        </section>
+
+        <section aria-labelledby="ascii-heading" class="console-block">
+          <header id="ascii-heading">ascii snippet</header>
+          <pre class="text-sm md:text-base text-slate-200/90 whitespace-pre overflow-x-auto" role="img" aria-label="ASCII art of Nyan Cat flying through space">
+_/﹋\_
+(˚ˎ 。7
+ |、˜〵
+ じしˍ,)ノ  nyan-cat.space — pursuing delight at light speed
+          </pre>
+        </section>
+
+        <section aria-labelledby="contact-heading" id="contact" class="console-block space-y-4">
+          <header id="contact-heading">drop a transmission</header>
+          <p class="text-sm md:text-base text-slate-200/90">
+            Reach out for collaborations, speaking, or to swap space-themed playlists.
+          </p>
+          <div class="flex flex-wrap gap-4 text-sm md:text-base">
+            <a
+              class="border border-neon/60 px-4 py-2 rounded-lg hover:bg-neon/10 transition focus-visible"
+              href="contact.html"
+              >open contact console</a
+            >
+            <a class="border border-amber/60 px-4 py-2 rounded-lg hover:bg-amber/10 transition focus-visible" href="mailto:carlos@space.dev"
+              >carlos@space.dev</a
+            >
+            <a
+              class="border border-magenta/60 px-4 py-2 rounded-lg hover:bg-magenta/10 transition focus-visible"
+              href="https://www.linkedin.com/in/carlosmasson"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+            <a
+              class="border border-magenta/60 px-4 py-2 rounded-lg hover:bg-magenta/10 transition focus-visible"
+              href="https://github.com/1cmasson"
+              target="_blank"
+              rel="noopener"
+              >GitHub</a
+            >
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="relative z-10 border-t border-neon/20 bg-black/60">
+      <div class="max-w-5xl mx-auto px-6 py-8 text-sm text-slate-200/70">
+        <p>© 2025 Carlos Masson. Crafted in a zero-gravity terminal.</p>
+      </div>
+    </footer>
+
+    <script src="scripts/main.js" defer></script>
+  </body>
+</html>

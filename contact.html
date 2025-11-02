@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-terminal">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact — Nyan Cat Space Terminal</title>
+    <meta
+      name="description"
+      content="Send a transmission through the dedicated Nyan Cat Space contact console."
+    />
+    <link rel="stylesheet" href="styles/tailwind-base.css" />
+    <link rel="stylesheet" href="styles/tailwind.css" />
+  </head>
+  <body class="bg-space text-neon-green font-terminal min-h-screen overflow-x-hidden antialiased">
+    <a class="skip-link" href="#contact-main">Skip to contact console</a>
+    <canvas class="starfield-canvas" data-starfield aria-hidden="true"></canvas>
+    <div
+      class="nyan-container"
+      data-nyan
+      role="img"
+      aria-label="Nyan Cat preps the contact console with a rainbow trail."
+    >
+      <img src="assets/nyan/nyan-cat.gif" alt="" />
+    </div>
+
+    <header class="relative z-10">
+      <nav class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+        <a class="text-sm uppercase tracking-[0.35em] text-neon-amber hover:text-amber transition" href="index.html"
+          >nyan@space:~$</a
+        >
+        <ul class="flex items-center gap-6 text-sm md:text-base">
+          <li>
+            <a class="hover:text-amber transition" href="index.html">home</a>
+          </li>
+          <li>
+            <a class="hover:text-amber transition" href="about.html">about</a>
+          </li>
+          <li>
+            <a class="hover:text-amber transition" href="projects.html">projects</a>
+          </li>
+          <li>
+            <a class="hover:text-amber transition" href="blog.html">blog</a>
+          </li>
+          <li>
+            <a class="text-neon-amber" aria-current="page" href="contact.html">contact</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="contact-main" class="relative z-10 px-6 py-16 md:py-24">
+      <div class="max-w-6xl mx-auto space-y-12">
+        <section aria-labelledby="contact-hero" class="space-y-6">
+          <p class="text-sm uppercase tracking-[0.35em] text-neon-amber">open transmission</p>
+          <h1 id="contact-hero" class="text-4xl md:text-5xl font-semibold headline-glow">Contact Console</h1>
+          <p class="text-slate-200/80 text-lg max-w-3xl">
+            Ready to collaborate, chat about cosmic UX, or share a playlist? Use the secure Netlify-powered form below
+            to send a message straight to mission control.
+          </p>
+        </section>
+
+        <section aria-labelledby="contact-form-heading" class="console-block space-y-6">
+          <header id="contact-form-heading">transmission form</header>
+          <p class="text-sm text-slate-200/80">
+            Fill in the fields to beam a Netlify-secured message directly to Carlos. Required inputs are marked with
+            <span aria-hidden="true">*</span>. The console shares status updates inline so you never lose your place.
+          </p>
+          <noscript>
+            <p class="text-sm text-slate-200/70">
+              JavaScript is disabled. After submitting, Netlify redirects back here and highlights the confirmation
+              banner above.
+            </p>
+          </noscript>
+          <div
+            id="contact-success-fallback"
+            class="status-banner"
+            data-status="success"
+            aria-live="polite"
+          >
+            <span aria-hidden="true">✱</span>
+            <div>
+              <p class="font-semibold uppercase tracking-[0.25em] text-xs">transmission logged</p>
+              <p class="text-sm">
+                Thanks for reaching out! This confirmation appears when JavaScript is disabled and Netlify redirects you
+                back to the contact console.
+              </p>
+            </div>
+          </div>
+          <form
+            id="contact-form"
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            action="/contact.html?submission=success#contact-success-fallback"
+            class="space-y-6"
+            data-contact-form
+            aria-describedby="contact-form-hint"
+          >
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="honeypot-field">
+              <label for="bot-field">Leave this field blank if you are human</label>
+              <input id="bot-field" name="bot-field" type="text" />
+            </p>
+
+            <div
+              class="status-banner"
+              data-status="success"
+              data-form-success
+              data-hidden="true"
+              role="status"
+              aria-live="polite"
+            >
+              <span aria-hidden="true">✱</span>
+              <div>
+                <p class="font-semibold uppercase tracking-[0.25em] text-xs">transmission sent</p>
+                <p class="text-sm">
+                  Thanks for the message! Expect a reply within two business days (or one lunar cycle, whichever lands
+                  first).
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="status-banner"
+              data-status="error"
+              data-form-error
+              data-hidden="true"
+              role="alert"
+            >
+              <span aria-hidden="true">⚠</span>
+              <div>
+                <p class="font-semibold uppercase tracking-[0.25em] text-xs">transmission blocked</p>
+                <p class="text-sm" data-form-error-text>
+                  Something went sideways sending your message. Please review the highlighted fields and try again.
+                </p>
+              </div>
+            </div>
+
+            <div class="form-grid-terminal" id="contact-form-hint">
+              <div>
+                <label class="block text-xs uppercase tracking-[0.3em] text-slate-200/70 mb-2" for="contact-name"
+                  >name <span aria-hidden="true">*</span></label
+                >
+                <input
+                  id="contact-name"
+                  name="name"
+                  type="text"
+                  required
+                  autocomplete="name"
+                  class="input-terminal"
+                  placeholder="Nyan Cat Explorer"
+                  aria-describedby="contact-name-hint contact-name-error"
+                  aria-required="true"
+                />
+                <p class="terminal-hint" id="contact-name-hint">Introduce yourself so Carlos knows who to thank.</p>
+                <p class="text-xs text-error mt-1" id="contact-name-error" data-field-error hidden></p>
+              </div>
+
+              <div>
+                <label class="block text-xs uppercase tracking-[0.3em] text-slate-200/70 mb-2" for="contact-email"
+                  >email <span aria-hidden="true">*</span></label
+                >
+                <input
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  class="input-terminal"
+                  placeholder="you@galaxy.dev"
+                  aria-describedby="contact-email-hint contact-email-error"
+                  aria-required="true"
+                />
+                <p class="terminal-hint" id="contact-email-hint">We&rsquo;ll only use this to respond to your note.</p>
+                <p class="text-xs text-error mt-1" id="contact-email-error" data-field-error hidden></p>
+              </div>
+
+              <div>
+                <label class="block text-xs uppercase tracking-[0.3em] text-slate-200/70 mb-2" for="contact-phone"
+                  >phone (optional)</label
+                >
+                <input
+                  id="contact-phone"
+                  name="phone"
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  class="input-terminal"
+                  placeholder="+1 555 SPACE CAT"
+                  aria-describedby="contact-phone-hint contact-phone-error"
+                />
+                <p class="terminal-hint" id="contact-phone-hint">
+                  Share a number if you prefer a quick call-back.
+                </p>
+                <p class="text-xs text-error mt-1" id="contact-phone-error" data-field-error hidden></p>
+              </div>
+
+              <div class="form-control-full">
+                <label class="block text-xs uppercase tracking-[0.3em] text-slate-200/70 mb-2" for="contact-message"
+                  >message <span aria-hidden="true">*</span></label
+                >
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  required
+                  rows="6"
+                  class="textarea-terminal"
+                  placeholder="Share mission context, project links, or a hello from the cosmos."
+                  aria-describedby="contact-message-hint contact-message-error"
+                  aria-required="true"
+                ></textarea>
+                <p class="terminal-hint" id="contact-message-hint">
+                  Cosmic context helps keep responses fast and on point.
+                </p>
+                <p class="text-xs text-error mt-1" id="contact-message-error" data-field-error hidden></p>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button class="button-terminal" type="submit" data-submit-button>
+                send transmission
+                <span aria-hidden="true">➜</span>
+              </button>
+              <button class="button-terminal button-secondary" type="reset">
+                reset
+                <span aria-hidden="true">⌫</span>
+              </button>
+              <p class="terminal-hint">
+                Spam protection uses a honeypot field; real humans can ignore it.
+              </p>
+            </div>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <footer class="relative z-10 border-t border-neon/20 bg-black/60">
+      <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <p class="text-sm text-slate-200/70">© 2025 Carlos Masson — transmissions answered within two lunar cycles.</p>
+        <div class="flex flex-wrap gap-4 text-sm">
+          <a class="hover:text-magenta transition focus-visible" href="index.html">Home</a>
+          <a class="hover:text-magenta transition focus-visible" href="about.html">About</a>
+          <a class="hover:text-magenta transition focus-visible" href="projects.html">Projects</a>
+          <a class="hover:text-magenta transition focus-visible" href="blog.html">Blog</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="scripts/main.js" defer></script>
+  </body>
+</html>

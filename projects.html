@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-terminal">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects — Nyan Cat Space Terminal</title>
+    <meta
+      name="description"
+      content="Browse creative experiments and professional missions orbiting the Nyan Cat Space terminal."
+    />
+    <link rel="stylesheet" href="styles/tailwind-base.css" />
+    <link rel="stylesheet" href="styles/tailwind.css" />
+  </head>
+  <body class="bg-space text-neon-green font-terminal min-h-screen overflow-x-hidden antialiased">
+    <a class="skip-link" href="#projects-main">Skip to projects</a>
+    <canvas class="starfield-canvas" data-starfield aria-hidden="true"></canvas>
+    <div
+      class="nyan-container"
+      data-nyan
+      role="img"
+      aria-label="Nyan Cat glides past the planet grid."
+    >
+      <img src="assets/nyan/nyan-cat.gif" alt="" />
+    </div>
+
+    <header class="relative z-10">
+      <nav class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+        <a class="text-sm uppercase tracking-[0.35em] text-neon-amber hover:text-amber transition" href="index.html"
+          >nyan@space:~$</a
+        >
+        <ul class="flex items-center gap-6 text-sm md:text-base">
+          <li>
+            <a class="hover:text-amber transition" href="index.html" aria-label="Back to mission control">home</a>
+          </li>
+          <li>
+            <a class="hover:text-magenta transition" href="about.html" aria-label="Read captain log">about</a>
+          </li>
+          <li>
+            <a class="hover:text-amber transition" href="blog.html" aria-label="View the cosmic blog feed">blog</a>
+          </li>
+          <li>
+            <a class="hover:text-magenta transition" href="contact.html" aria-label="Open contact transmission"
+              >contact</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="projects-main" class="relative z-10 px-6 py-16 md:py-24">
+      <div class="max-w-6xl mx-auto space-y-12">
+        <section aria-labelledby="projects-heading" class="space-y-6">
+          <p class="text-sm uppercase tracking-[0.35em] text-neon-amber">project orbit</p>
+          <h1 id="projects-heading" class="text-4xl md:text-5xl font-semibold headline-glow">Planets &amp; missions</h1>
+          <p class="text-slate-200/80 text-lg max-w-3xl">
+            A collection of shipped missions, experimental prototypes, and narrative-driven playgrounds. Each planet
+            highlights impact, tools, and cosmic learnings.
+          </p>
+        </section>
+
+        <section class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3" aria-label="Project cards">
+          <article class="planet-card" aria-label="Project: Cosmic Control Room">
+            <header class="flex items-center justify-between mb-4">
+              <span class="planet-emoji" aria-hidden="true">🛰️</span>
+              <h2 class="text-xl font-semibold text-neon-green">Cosmic Control Room</h2>
+            </header>
+            <p class="text-sm text-slate-200/80 mb-4">
+              Led design system overhaul for mission dashboards serving 200+ analysts. Introduced accessible component
+              tokens, cut UI defects by 45%.
+            </p>
+            <a
+              class="inline-flex items-center gap-2 text-sm text-amber hover:text-neon-green transition focus-visible"
+              href="https://github.com/1cmasson"
+              target="_blank"
+              rel="noopener"
+              >view case study<span aria-hidden="true">→</span></a
+            >
+          </article>
+
+          <article class="planet-card" aria-label="Project: Aurora Synth Lab">
+            <header class="flex items-center justify-between mb-4">
+              <span class="planet-emoji" aria-hidden="true">🎹</span>
+              <h2 class="text-xl font-semibold text-neon-green">Aurora Synth Lab</h2>
+            </header>
+            <p class="text-sm text-slate-200/80 mb-4">
+              Browser-based synthesizer built with Web Audio and Canvas. Features cat-triggered pads and modular effects
+              pipeline for live shows.
+            </p>
+            <span class="text-xs uppercase tracking-[0.3em] text-slate-200/60">open-sourced experiment</span>
+          </article>
+
+          <article class="planet-card" aria-label="Project: Nebula Narrative Engine">
+            <header class="flex items-center justify-between mb-4">
+              <span class="planet-emoji" aria-hidden="true">📚</span>
+              <h2 class="text-xl font-semibold text-neon-green">Nebula Narrative Engine</h2>
+            </header>
+            <p class="text-sm text-slate-200/80 mb-4">
+              Interactive fiction toolkit enabling branching stories delivered via terminal UI. Supports Markdown authoring
+              and real-time previews.
+            </p>
+            <a
+              class="inline-flex items-center gap-2 text-sm text-amber hover:text-neon-green transition focus-visible"
+              href="https://github.com/1cmasson"
+              target="_blank"
+              rel="noopener"
+              >source code<span aria-hidden="true">→</span></a
+            >
+          </article>
+
+          <article class="planet-card" aria-label="Project: Rainbow Drive Fleet">
+            <header class="flex items-center justify-between mb-4">
+              <span class="planet-emoji" aria-hidden="true">🚀</span>
+              <h2 class="text-xl font-semibold text-neon-green">Rainbow Drive Fleet</h2>
+            </header>
+            <p class="text-sm text-slate-200/80 mb-4">
+              Fleet of procedurally generated cat rockets displayed at art festivals. Powered by WebGL shaders and MIDI
+              inputs.
+            </p>
+            <span class="text-xs uppercase tracking-[0.3em] text-slate-200/60">in-flight exhibition</span>
+          </article>
+
+          <article class="planet-card" aria-label="Project: Astro Ally">
+            <header class="flex items-center justify-between mb-4">
+              <span class="planet-emoji" aria-hidden="true">🧭</span>
+              <h2 class="text-xl font-semibold text-neon-green">Astro Ally</h2>
+            </header>
+            <p class="text-sm text-slate-200/80 mb-4">
+              Accessibility-first companion app offering WCAG checklists and live contrast tooling inside browser panels.
+            </p>
+            <a
+              class="inline-flex items-center gap-2 text-sm text-amber hover:text-neon-green transition focus-visible"
+              href="https://github.com/1cmasson"
+              target="_blank"
+              rel="noopener"
+              >design doc<span aria-hidden="true">→</span></a
+            >
+          </article>
+
+          <article class="planet-card" aria-label="Project: Lint in Space">
+            <header class="flex items-center justify-between mb-4">
+              <span class="planet-emoji" aria-hidden="true">🛰️</span>
+              <h2 class="text-xl font-semibold text-neon-green">Lint in Space</h2>
+            </header>
+            <p class="text-sm text-slate-200/80 mb-4">
+              ESLint plugin suite that enforces motion safety, color contrast, and terminal-friendly typography for web
+              teams.
+            </p>
+            <span class="text-xs uppercase tracking-[0.3em] text-slate-200/60">tooling mission</span>
+          </article>
+        </section>
+      </div>
+    </main>
+
+    <footer class="relative z-10 border-t border-neon/20 bg-black/60">
+      <div class="max-w-6xl mx-auto px-6 py-10 text-sm text-slate-200/70 space-y-2">
+        <p>Want to collaborate? Ping <a class="underline hover:text-amber transition focus-visible" href="mailto:carlos@space.dev">carlos@space.dev</a>.</p>
+        <p>Prefer transmissions via social? <a class="underline hover:text-amber transition focus-visible" href="https://github.com/1cmasson" target="_blank" rel="noopener">GitHub</a> · <a class="underline hover:text-amber transition focus-visible" href="https://www.linkedin.com/in/carlosmasson" target="_blank" rel="noopener">LinkedIn</a></p>
+        <div class="flex flex-wrap gap-3 pt-2 text-slate-200/60">
+          <a class="hover:text-magenta transition focus-visible" href="index.html">Home</a>
+          <a class="hover:text-magenta transition focus-visible" href="about.html">About</a>
+          <a class="hover:text-magenta transition focus-visible" href="projects.html">Projects</a>
+          <a class="hover:text-magenta transition focus-visible" href="blog.html">Blog</a>
+          <a class="hover:text-magenta transition focus-visible" href="contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="scripts/main.js" defer></script>
+  </body>
+</html>
