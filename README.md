@@ -20,21 +20,11 @@ npx serve .
 
 Check the manual QA checklist in `specs/001-nyan-cat-space/quickstart.md` for accessibility and performance verification steps.
 
-## Environment Variables
-Sanity-powered blog content expects a local `.env` file based on `.env.example`:
-
-```bash
-cp .env.example .env
-```
-
-Populate the following keys (drawn from the “Using Sanity.io with Vanilla JavaScript for a Static Portfolio Site” reference):
-
-- `SANITY_PROJECT_ID` — Sanity project identifier.
-- `SANITY_DATASET` — dataset that stores published posts (defaults to `production`).
-- `SANITY_API_VERSION` — API date version for Content Lake queries (ISO date string).
-- `SANITY_READ_TOKEN` — optional token if the dataset is private; leave blank for public datasets.
-
-Credentials remain local; the static site reads them at runtime via the upcoming Sanity helper.
+## Content Workflow
+- Project spotlights live under `content/projects/slug.md` with YAML frontmatter (title, summary, tech, launch date) followed by Markdown body copy.
+- Blog posts live under `content/blog/yyyy-mm-dd-slug.md` with frontmatter (title, date, tags, summary) and Markdown body.
+- A lightweight parser under `scripts/content/markdown.js` converts Markdown to sanitized HTML at runtime. For users without JavaScript, pre-rendered HTML fallbacks (e.g., `<template>` blocks or committed `.html` companions) keep the experience accessible.
+- Reuse `.console-block` styling for article containers and extend `styles/tailwind.css` with `.markdown-article` utilities to format headings, lists, code blocks, and blockquotes.
 
 ## Contact CTA Workflow
 - The primary button on `contact.html` opens a `mailto:` draft prefilled with the owner’s email, subject, and greeting. Update the address and copy in the markup to match your inbox.

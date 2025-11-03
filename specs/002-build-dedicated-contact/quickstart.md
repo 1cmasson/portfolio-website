@@ -16,9 +16,15 @@
 - 2025-11-02 — Deployment confirmed live. Mailto CTA launches default client on macOS Safari/Chrome; clipboard helper requires manual retest post-deployment (not runnable via CLI).
 - 2025-11-02 — No additional channels configured yet; consider adding social handles before public launch.
 
-## Sanity Setup Snapshot
-- Copy `.env.example` to `.env` and populate the Sanity keys.
-- Reference “Using Sanity.io with Vanilla JavaScript for a Static Portfolio Site.pdf” for dataset + GROQ structure; implementation lands in Phase 3 tasks (`scripts/cms/sanity-client.js`).
-- Update the meta tags in `blog.html` (or inject `window.__SANITY_CONFIG__`) with your project ID, dataset, and API version. Optional tokens should remain private.
-- After deploying, load `blog.html` with valid credentials: posts render as `console-block` cards, and the empty state hides. Remove credentials to confirm the empty state reappears without console errors.
+## Markdown Content Engine Notes
+- Store project articles under `content/projects/slug.md` and blog posts under `content/blog/yyyy-mm-dd-slug.md`. Each file begins with YAML frontmatter (title, summary/date/tags) followed by Markdown body content.
+- Parsing approach TBD: lightweight runtime parser (`scripts/content/markdown.js`) must support headings (`#`, `##`), paragraphs, lists, inline/ block code, links, and blockquotes. Output should be sanitized before insertion.
+- JavaScript-disabled fallback: pre-render HTML (e.g., commit `content/projects/slug.html`) or bake `<template>` elements into the index pages that mirror Markdown output. Document the chosen approach here once defined.
+- Styling: reuse `.console-block` container for articles, add `.markdown-article` utility with spacing for headings, lists, and code blocks in `styles/tailwind.css`.
+
+### Verification Log
+- 2025-11-02 — Markdown directories not yet created. Define frontmatter schema and choose parser before implementing runtime loader.
+- 2025-11-02 — Decide on sanitation strategy (custom whitelist vs. DOMPurify-lite) prior to shipping article rendering.
+
+## Outstanding QA
 - 2025-11-02 — Accessibility sweep (keyboard navigation, reduced-motion) not executed from CLI; schedule manual run post-deployment and update this log with results.

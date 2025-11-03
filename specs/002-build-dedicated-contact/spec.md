@@ -1,9 +1,9 @@
-# Feature Specification: Dedicated Contact Page (Email CTA) & Sanity CMS Scaffold
+# Feature Specification: Dedicated Contact Page (Email CTA) & Markdown Content Engine
 
 **Feature Branch**: `002-build-dedicated-contact`  
 **Created**: 2025-10-31  
 **Status**: Draft (Revised 2025-11-02)  
-**Input**: "Redesign the dedicated contact page so it no longer uses Netlify Forms. Instead, provide a first-class email call-to-action that launches the visitor's mail client (mailto) and a secondary way to copy the address if they prefer webmail. Keep the cosmic terminal aesthetic, preserve accessibility affordances (skip link, focus states), and make sure reduced-motion users are not forced into animations. Update navigation/footer links if needed." "In the same feature, scaffold a future-proof blog powered by Sanity.io as a headless CMS: outline required datasets and schemas for blog posts, add configuration placeholders (env vars, JS client shim) in the repo, and add a blog landing page that can render Sanity content when credentials are present while showing an empty state otherwise."
+**Input**: "Redesign the dedicated contact page so it no longer uses Netlify Forms. Instead, provide a first-class email call-to-action that launches the visitor's mail client (mailto) and a secondary way to copy the address if they prefer webmail. Keep the cosmic terminal aesthetic, preserve accessibility affordances (skip link, focus states), and make sure reduced-motion users are not forced into animations. Update navigation/footer links if needed." "Replace the Sanity CMS plan with a lightweight markdown content engine. Store project spotlights and blog posts as Markdown files inside the repository, render them into HTML at runtime (or during build-free load) with accessible article templates, and eliminate all third-party dependencies so the site remains a clean static experience."
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -39,21 +39,36 @@ The maintainer provides alternative contact info (email, optional socials) and g
 
 ---
 
-### User Story 3 - Explore Sanity-Powered Blog Entries (Priority: P2)
+### User Story 3 - Read Markdown-Powered Project Spotlights (Priority: P2)
 
-A visitor opens the new Blog page. If Sanity credentials exist, the page fetches published posts and renders them in the retro console motif; otherwise, it displays an informative empty state with a prompt to check back soon.
+A visitor navigates to the Projects page and opens a project detail card. The site loads the associated Markdown file from the local repository, renders it inside an article layout, and preserves the cosmic terminal styling without relying on external services.
 
-**Why this priority**: Establishing a CMS integration now unblocks future content updates while keeping the static site lean, aligning with scalability principles.
+**Why this priority**: Markdown keeps the site owner in full control, avoids vendor lock-in, and aligns with the static, terminal-first constitution while enabling richer long-form write-ups.
 
-**Independent Test**: Populate environment variables with sample Sanity credentials (matching the PDF reference workflow), reload the blog page to verify published posts render in reverse chronological order, then remove credentials and confirm the empty state remains accessible.
+**Independent Test**: Add two sample Markdown files under `content/projects/`. From desktop (≥1280px) and mobile (360px), open each project article, confirm headings, metadata, and body copy render with accessible semantics, and verify keyboard navigation stays intact.
 
 **Acceptance Scenarios**:
 
-1. **Given** valid Sanity configuration values, **When** the blog page initializes, **Then** it fetches published posts via the Sanity Content Lake CDN and displays title, published date, and excerpt for each entry.
-2. **Given** missing or invalid credentials, **When** the page attempts to fetch posts, **Then** it surfaces an aria-live warning and keeps the layout stable with placeholder copy.
+1. **Given** a Markdown file stored under `content/projects/`, **When** the visitor opens its permalink, **Then** the page renders the title, summary, metadata (e.g., tech stack, launch date), and body content in a styled `<article>` without layout shift.
+2. **Given** the visitor disables JavaScript, **When** the project page loads, **Then** the Markdown is still transformed into HTML via a no-build fallback (pre-rendered or serverless-free technique such as embedding a `<template>` with preprocessed HTML) so the content remains readable.
+
+---
+
+### User Story 4 - Explore Markdown Blog Entries (Priority: P2)
+
+A visitor lands on the Blog page. The page lists locally stored Markdown posts in reverse chronological order. Selecting a post loads the HTML-rendered article with proper headings, code blocks, and navigation back to the index.
+
+**Why this priority**: Migrating to Markdown eliminates third-party costs and keeps the blog portable while aligning with the constitution’s simplicity and accessibility gates.
+
+**Independent Test**: Create at least two Markdown posts under `content/blog/`. Load `blog.html` to confirm the index lists each post with title, publish date, and a short excerpt. Open a post detail page to ensure headings, paragraphs, links, and code blocks render as expected.
+
+**Acceptance Scenarios**:
+
+1. **Given** Markdown files with frontmatter metadata (title, date, tags), **When** the blog index loads, **Then** it lists posts sorted by date with accessible links to each article and no console errors.
+2. **Given** a blog Markdown file containing headings, inline code, and links, **When** the detail page renders, **Then** the semantic structure maps correctly to HTML elements (`<h1>`, `<h2>`, `<p>`, `<code>`, `<a>`) while maintaining the terminal aesthetic and reduced-motion respect.
 
 ### Edge Cases
 
 - Visitors without a default mail client must still be able to copy the address and read instructions without scripts.  
-- `prefers-reduced-motion` avoids animated focus rings or status banners; any shimmer/pulse must be disabled when motion is reduced.  
-- Sanity fetch errors (network offline, 401) are caught and reported without breaking the rest of the page.
+- Markdown parsing must handle unknown elements gracefully; unsupported syntax should degrade to plain text without breaking layout.  
+- Cached Markdown should refresh when files change (e.g., cache-busting query params or file hashes) to avoid stale content.
