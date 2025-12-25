@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-terminal">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog Article — Nyan Cat Space Terminal</title>
+    <meta name="description" content="Read a full mission log rendered from local Markdown content." />
+    <link rel="stylesheet" href="../styles/tailwind-base.css" />
+    <link rel="stylesheet" href="../styles/tailwind.css" />
+  </head>
+  <body class="bg-space text-neon-green font-terminal min-h-screen overflow-x-hidden antialiased">
+    <a class="skip-link" href="#blog-article">Skip to blog article</a>
+    <canvas class="starfield-canvas" data-starfield aria-hidden="true"></canvas>
+    <div class="nyan-container" data-nyan role="img" aria-label="Nyan Cat delivers the selected blog article.">
+      <img src="../assets/nyan/nyan-cat.gif" alt="" />
+    </div>
+
+    <header class="relative z-10">
+      <nav class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+        <a class="text-sm uppercase tracking-[0.35em] text-neon-amber hover:text-amber transition" href="../index.html"
+          >nyan@space:~$</a
+        >
+        <ul class="flex items-center gap-6 text-sm md:text-base">
+          <li>
+            <a class="hover:text-amber transition" href="../index.html">home</a>
+          </li>
+          <li>
+            <a class="hover:text-amber transition" href="../about.html">about</a>
+          </li>
+          <li>
+            <a class="hover:text-amber transition" href="../projects.html">projects</a>
+          </li>
+          <li>
+            <a class="text-neon-amber" aria-current="page" href="../blog.html">blog</a>
+          </li>
+          <li>
+            <a class="hover:text-magenta transition" href="../contact.html">contact</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="blog-article" class="relative z-10 px-6 py-16 md:py-24">
+      <div class="max-w-4xl mx-auto space-y-10">
+        <a class="inline-flex items-center gap-2 text-sm text-amber hover:text-neon-green transition focus-visible" href="../blog.html">
+          <span aria-hidden="true">←</span> Back to all posts
+        </a>
+
+        <header class="space-y-4">
+          <p class="text-xs uppercase tracking-[0.3em] text-neon-amber" data-article-date>March 8, 2025</p>
+          <h1 class="text-4xl md:text-5xl font-semibold headline-glow" data-article-title>
+            Plotting the Markdown Orbit
+          </h1>
+          <p class="text-slate-200/80 text-lg" data-article-summary>
+            How we swapped Sanity for local Markdown while keeping the cosmic terminal vibe intact.
+          </p>
+          <div class="flex flex-wrap gap-2 text-xs uppercase tracking-[0.25em] text-slate-200/70" data-article-tags>
+            <span class="border border-neon/30 px-2 py-1 rounded">markdown</span>
+            <span class="border border-neon/30 px-2 py-1 rounded">accessibility</span>
+            <span class="border border-neon/30 px-2 py-1 rounded">tooling</span>
+          </div>
+        </header>
+
+        <article class="markdown-article space-y-6 rounded-lg border border-neon/20 bg-black/60 p-6 md:p-8 shadow-[0_0_40px_rgba(80,255,163,0.08)]" data-blog-article data-article-fallback="blog-post-2025-03-08-markdown-orbit">
+          <h1>Why Markdown, Why Now?</h1>
+          <p>Switching to repository-first Markdown keeps the whole site portable. Contributors can open a pull request, preview locally, and launch without waiting on external dashboards.</p>
+          <h2>Guardrails We Needed</h2>
+          <ol>
+            <li><strong>Sanitization</strong> — The parser strips unexpected HTML while preserving safe emphasis and code blocks.</li>
+            <li><strong>No-JS fallback</strong> — Each article ships with a pre-rendered <code>&lt;template&gt;</code> so readers without scripts still get the full story.</li>
+            <li><strong>Clipboard harmony</strong> — We confirmed clipboard helpers ignore Markdown rendering to avoid odd focus jumps.</li>
+          </ol>
+          <pre><code data-lang="bash"># Render a local markdown file for preflight QA
+node scripts/content/markdown.js content/blog/2025-03-08-markdown-orbit.md</code></pre>
+          <h3>Final Transmission</h3>
+          <p>Markdown keeps our constellation simple. Pair it with Playwright keyboard flows and the terminal aesthetic stays razor sharp.</p>
+        </article>
+
+        <p class="text-sm text-slate-200/70" data-blog-missing hidden>
+          Post not found. Head back to the <a class="underline hover:text-amber transition focus-visible" href="../blog.html">blog index</a> or verify the slug in
+          `content/blog/manifest.json`.
+        </p>
+      </div>
+
+      <template id="blog-post-2025-03-08-markdown-orbit">
+        <article class="markdown-article space-y-6 rounded-lg border border-neon/20 bg-black/60 p-6 md:p-8 shadow-[0_0_40px_rgba(80,255,163,0.08)]">
+          <h1>Why Markdown, Why Now?</h1>
+          <p>Switching to repository-first Markdown keeps the whole site portable. Contributors can open a pull request, preview locally, and launch without waiting on external dashboards.</p>
+          <h2>Guardrails We Needed</h2>
+          <ol>
+            <li><strong>Sanitization</strong> — The parser strips unexpected HTML while preserving safe emphasis and code blocks.</li>
+            <li><strong>No-JS fallback</strong> — Each article ships with a pre-rendered <code>&lt;template&gt;</code> so readers without scripts still get the full story.</li>
+            <li><strong>Clipboard harmony</strong> — We confirmed clipboard helpers ignore Markdown rendering to avoid odd focus jumps.</li>
+          </ol>
+          <pre><code data-lang="bash"># Render a local markdown file for preflight QA
+node scripts/content/markdown.js content/blog/2025-03-08-markdown-orbit.md</code></pre>
+          <h3>Final Transmission</h3>
+          <p>Markdown keeps our constellation simple. Pair it with Playwright keyboard flows and the terminal aesthetic stays razor sharp.</p>
+        </article>
+      </template>
+    </main>
+
+    <footer class="relative z-10 border-t border-neon/20 bg-black/60">
+      <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <p class="text-sm text-slate-200/70">© 2025 Carlos Masson — grounded in Markdown-powered transmissions.</p>
+        <div class="flex flex-wrap gap-4 text-sm">
+          <a class="hover:text-magenta transition focus-visible" href="../index.html">Home</a>
+          <a class="hover:text-magenta transition focus-visible" href="../about.html">About</a>
+          <a class="hover:text-magenta transition focus-visible" href="../projects.html">Projects</a>
+          <a class="hover:text-magenta transition focus-visible" href="../blog.html">Blog</a>
+          <a class="hover:text-magenta transition focus-visible" href="../contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../scripts/content/markdown.js" defer></script>
+    <script src="../scripts/main.js" defer></script>
+  </body>
+</html>

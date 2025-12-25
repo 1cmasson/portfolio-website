@@ -8,7 +8,7 @@ A playful, terminal-inspired personal site that celebrates space vibes, accessib
 - Terminal-styled About page featuring ASCII art, timeline, and skills.
 - Projects page with glassy planet cards and hover/focus effects.
 - Dedicated contact console with mailto CTA, clipboard helper, and reduced-motion friendly styling.
-- Blog landing pad ready to render Sanity-published posts (empty state for now).
+- Blog index and detail pages render local Markdown with runtime parsing + no-JS fallbacks.
 - Fully semantic, keyboard-navigable layout with skip links and ARIA labels.
 
 ## Local Preview
@@ -23,8 +23,9 @@ Check the manual QA checklist in `specs/001-nyan-cat-space/quickstart.md` for ac
 ## Content Workflow
 - Project spotlights live under `content/projects/slug.md` with YAML frontmatter (title, summary, tech, launch date) followed by Markdown body copy.
 - Blog posts live under `content/blog/yyyy-mm-dd-slug.md` with frontmatter (title, date, tags, summary) and Markdown body.
-- A lightweight parser under `scripts/content/markdown.js` converts Markdown to sanitized HTML at runtime. For users without JavaScript, pre-rendered HTML fallbacks (e.g., `<template>` blocks or committed `.html` companions) keep the experience accessible.
-- Reuse `.console-block` styling for article containers and extend `styles/tailwind.css` with `.markdown-article` utilities to format headings, lists, code blocks, and blockquotes.
+- Update `content/blog/manifest.json` whenever you add or remove a post. Each entry maps a slug to its Markdown source plus fallback template IDs used by the index/detail pages.
+- A lightweight parser under `scripts/content/markdown.js` converts Markdown to sanitized HTML at runtime. `projects.html`, `blog.html`, and `blog/post.html` all ship inline `<template>` fallbacks so readers without JavaScript still see rendered content.
+- Reuse `.console-block` styling for article containers and extend `styles/tailwind.css` with `.markdown-article` utilities to format headings, lists, inline emphasis, and code blocks.
 
 ## Contact CTA Workflow
 - The primary button on `contact.html` opens a `mailto:` draft prefilled with the owner’s email, subject, and greeting. Update the address and copy in the markup to match your inbox.

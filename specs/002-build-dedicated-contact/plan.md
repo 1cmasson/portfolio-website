@@ -1,4 +1,4 @@
-# Implementation Plan: Dedicated Contact Page & Sanity CMS Scaffold
+# Implementation Plan: Dedicated Contact Page & Markdown Content Engine
 
 **Branch**: `002-build-dedicated-contact` | **Date**: 2025-10-31 | **Spec**: `/specs/002-build-dedicated-contact/spec.md`  
 **Input**: Feature specification from `/specs/002-build-dedicated-contact/spec.md`
@@ -16,9 +16,9 @@ Ship a first-class contact experience and markdown-powered content system withou
 **Assets**: Media stored under `assets/`; individual files ≤ 200KB unless a variance is justified in Constitution Check  
 **Validation**: Manual accessibility sweeps (keyboard navigation, contrast, reduced motion), responsive testing across mobile/desktop, email CTA smoke test (mailto launch + clipboard fallback), Markdown article rendering verification (JS enabled/disabled), optional automated linting if available  
 **Target Platforms**: Evergreen desktop/mobile browsers, graceful fallback with JavaScript disabled  
-**Performance Goals**: First meaningful paint < 2s on LTE, animation frame budgets ≤ 16ms, zero blocking network requests after initial page load; Sanity fetch runs post-load and caches results in-memory  
+**Performance Goals**: First meaningful paint < 2s on LTE, animation frame budgets ≤ 16ms, zero blocking network requests after initial page load; Markdown fetches should stay under 50 KB per article and reuse cached responses when possible.  
 **Constraints**: Preserve retro terminal aesthetic, respect prefers-reduced-motion, stay fully static (no build tooling), maintain accessible content hierarchy, surface contact instructions that work with and without JavaScript, ensure Markdown content is readable without client-side parsing when possible  
-**Scope**: Existing static pages plus new `contact.html` and `blog.html`, shared assets, Sanity helper, environment documentation
+**Scope**: Existing static pages plus new `contact.html`, `blog.html`, and `blog/post.html`, shared assets, Markdown parser module, and updated documentation for the local content workflow
 
 ## Constitution Check
 
@@ -60,7 +60,7 @@ specs/[###-feature]/
     └── ascii/
 ```
 
-**Structure Decision**: Add `contact.html` and `blog.html` at the root, `scripts/cms/sanity-client.js` for the published-post fetch helper, and update `.env.example` (or create if absent) with Sanity variables—each addition keeps the static, terminal-centric layout while enabling contact + blog flows. Include `assets/ascii/contact-success.txt` if we need reusable console copy, ensuring assets directory organization remains clear.
+**Structure Decision**: Keep `contact.html`, `blog.html`, and `blog/post.html` at the root, powered by a shared Markdown helper (`scripts/content/markdown.js`) and a manifest (`content/blog/manifest.json`). Inline `<template>` fallbacks mirror parsed output so static hosting works with or without JavaScript. Include `assets/ascii/contact-success.txt` if we need reusable console copy, ensuring assets directory organization remains clear.
 
 ## Complexity Tracking
 

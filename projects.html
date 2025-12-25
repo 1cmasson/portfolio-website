@@ -23,29 +23,33 @@
       <img src="assets/nyan/nyan-cat.gif" alt="" />
     </div>
 
-    <header class="relative z-10">
-      <nav class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
-        <a class="text-sm uppercase tracking-[0.35em] text-neon-amber hover:text-amber transition" href="index.html"
-          >nyan@space:~$</a
-        >
-        <ul class="flex items-center gap-6 text-sm md:text-base">
-          <li>
-            <a class="hover:text-amber transition" href="index.html" aria-label="Back to mission control">home</a>
-          </li>
-          <li>
-            <a class="hover:text-magenta transition" href="about.html" aria-label="Read captain log">about</a>
-          </li>
-          <li>
-            <a class="hover:text-amber transition" href="blog.html" aria-label="View the cosmic blog feed">blog</a>
-          </li>
-          <li>
-            <a class="hover:text-magenta transition" href="contact.html" aria-label="Open contact transmission"
-              >contact</a
-            >
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <!-- HEADER:START -->
+<header class="relative z-10" data-partial="header">
+  <nav class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+    <a class="text-sm uppercase tracking-[0.35em] text-neon-amber hover:text-amber transition focus-visible" href="index.html" data-nav-brand>
+      nyan@space:~$
+    </a>
+    <ul class="flex items-center gap-6 text-sm md:text-base">
+      <li>
+        <a class="hover:text-amber transition focus-visible" data-nav="home" href="index.html">home</a>
+      </li>
+      <li>
+        <a class="hover:text-amber transition focus-visible" data-nav="about" href="about.html">about</a>
+      </li>
+      <li>
+        <a class="hover:text-amber transition focus-visible text-neon-amber" data-nav="projects" href="projects.html" aria-current="page" data-active="true">projects</a>
+      </li>
+      <li>
+        <a class="hover:text-amber transition focus-visible" data-nav="blog" href="blog.html">blog</a>
+      </li>
+      <li>
+        <a class="hover:text-magenta transition focus-visible" data-nav="contact" href="contact.html">contact</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HEADER:END -->
 
     <main id="projects-main" class="relative z-10 px-6 py-16 md:py-24">
       <div class="max-w-6xl mx-auto space-y-12">
@@ -148,23 +152,98 @@
             <span class="text-xs uppercase tracking-[0.3em] text-slate-200/60">tooling mission</span>
           </article>
         </section>
+
+        <section class="console-block space-y-6 rounded-xl border border-neon/30 bg-black/60 p-6 md:p-8 shadow-[0_0_40px_rgba(80,255,163,0.08)]" aria-labelledby="project-spotlight-heading">
+          <header class="space-y-2">
+            <p class="text-xs uppercase tracking-[0.35em] text-neon-amber">project spotlight</p>
+            <div class="flex flex-wrap items-baseline gap-3">
+              <h2 id="project-spotlight-heading" class="text-3xl font-semibold text-neon-green" data-project-title>Starlit Console Uplink</h2>
+              <span class="text-sm text-slate-200/70" data-project-launch>Launched 16 Jul 2025</span>
+            </div>
+            <p class="text-slate-200/80 text-base max-w-3xl" data-project-summary>
+              Pair-programming command center that syncs commits with cosmic telemetry and keeps collaborators in flow.
+            </p>
+            <div class="flex flex-wrap gap-2 text-xs uppercase tracking-[0.25em] text-slate-200/70" data-project-tech>
+              <span class="border border-neon/30 px-2 py-1 rounded">Vanilla JS</span>
+              <span class="border border-neon/30 px-2 py-1 rounded">Tailwind CSS</span>
+              <span class="border border-neon/30 px-2 py-1 rounded">Web Components</span>
+            </div>
+          </header>
+          <article class="markdown-article space-y-6" data-markdown-target="project">
+            <h1>Mission Overview</h1>
+            <p>The Starlit Console bridges remote collaborators through a retro terminal dashboard. Each pane renders markdown logs, commit diffs, and mission alerts in real time.</p>
+            <h2>Highlights</h2>
+            <ul>
+              <li>Terminal-grade contrast modes with <code>prefers-reduced-motion</code> guards.</li>
+              <li>Clipboard helper for sharing invite codes during live pairing.</li>
+              <li>Offline-first caching so jump drives stay in sync even without uplink coverage.</li>
+            </ul>
+            <pre><code data-lang="js">// Wormhole handshake (simplified)
+await uplink.sync({ channel: 'mission-alpha', retries: 3 });</code></pre>
+            <p><strong>Crew feedback:</strong> <em>"Feels like coding from a star cruiser."</em> — Beta testers at the Nebula Forge</p>
+            <h2>Next Steps</h2>
+            <ol>
+              <li>Expand telemetry overlay for CPU/RAM monitoring.</li>
+              <li>Add blog stream powered by the new Markdown engine.</li>
+              <li>Capture Playwright regression journeys once the parser is finalized.</li>
+            </ol>
+          </article>
+        </section>
       </div>
+      <template id="project-spotlight-fallback">
+        <article class="markdown-article space-y-6">
+          <h1>Mission Overview</h1>
+          <p>The Starlit Console bridges remote collaborators through a retro terminal dashboard. Each pane renders markdown logs, commit diffs, and mission alerts in real time.</p>
+          <h2>Highlights</h2>
+          <ul>
+            <li>Terminal-grade contrast modes with <code>prefers-reduced-motion</code> guards.</li>
+            <li>Clipboard helper for sharing invite codes during live pairing.</li>
+            <li>Offline-first caching so jump drives stay in sync even without uplink coverage.</li>
+          </ul>
+          <pre><code data-lang="js">// Wormhole handshake (simplified)
+await uplink.sync({ channel: 'mission-alpha', retries: 3 });</code></pre>
+          <p><strong>Crew feedback:</strong> <em>"Feels like coding from a star cruiser."</em> — Beta testers at the Nebula Forge</p>
+          <h2>Next Steps</h2>
+          <ol>
+            <li>Expand telemetry overlay for CPU/RAM monitoring.</li>
+            <li>Add blog stream powered by the new Markdown engine.</li>
+            <li>Capture Playwright regression journeys once the parser is finalized.</li>
+          </ol>
+        </article>
+      </template>
     </main>
 
-    <footer class="relative z-10 border-t border-neon/20 bg-black/60">
-      <div class="max-w-6xl mx-auto px-6 py-10 text-sm text-slate-200/70 space-y-2">
-        <p>Want to collaborate? Ping <a class="underline hover:text-amber transition focus-visible" href="mailto:carlos@space.dev">carlos@space.dev</a>.</p>
-        <p>Prefer transmissions via social? <a class="underline hover:text-amber transition focus-visible" href="https://github.com/1cmasson" target="_blank" rel="noopener">GitHub</a> · <a class="underline hover:text-amber transition focus-visible" href="https://www.linkedin.com/in/carlosmasson" target="_blank" rel="noopener">LinkedIn</a></p>
-        <div class="flex flex-wrap gap-3 pt-2 text-slate-200/60">
-          <a class="hover:text-magenta transition focus-visible" href="index.html">Home</a>
-          <a class="hover:text-magenta transition focus-visible" href="about.html">About</a>
-          <a class="hover:text-magenta transition focus-visible" href="projects.html">Projects</a>
-          <a class="hover:text-magenta transition focus-visible" href="blog.html">Blog</a>
-          <a class="hover:text-magenta transition focus-visible" href="contact.html">Contact</a>
-        </div>
-      </div>
-    </footer>
+    <!-- FOOTER:START -->
+<footer class="relative z-10 border-t border-neon/20 bg-black/60" data-partial="footer">
+  <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+    <div>
+      <p class="uppercase tracking-[0.3em] text-sm text-neon-amber">open transmission</p>
+      <p class="text-slate-200/80">
+        Email:
+        <a data-link="email" href="mailto:carlos@space.dev" class="underline focus-visible">carlos@space.dev</a>
+      </p>
+      <p class="text-slate-200/60 text-sm mt-2">
+        Built with accessibility, cosmic whimsy, and a sprinkle of rainbow pop-tarts.
+      </p>
+    </div>
+    <div class="flex gap-4 text-sm flex-wrap">
+      <a class="hover:text-amber transition focus-visible" data-link="github" href="https://github.com/1cmasson" target="_blank" rel="noopener">
+        GitHub
+      </a>
+      <a class="hover:text-amber transition focus-visible" data-link="linkedin" href="https://www.linkedin.com/in/carlosmasson" target="_blank" rel="noopener">
+        LinkedIn
+      </a>
+      <a class="hover:text-magenta transition focus-visible" href="index.html">Home</a>
+      <a class="hover:text-magenta transition focus-visible" href="about.html">About</a>
+      <a class="hover:text-magenta transition focus-visible" href="projects.html">Projects</a>
+      <a class="hover:text-magenta transition focus-visible" href="blog.html">Blog</a>
+      <a class="hover:text-magenta transition focus-visible" href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+<!-- FOOTER:END -->
 
+    <script src="scripts/content/markdown.js" defer></script>
     <script src="scripts/main.js" defer></script>
   </body>
 </html>

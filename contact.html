@@ -23,30 +23,33 @@
       <img src="assets/nyan/nyan-cat.gif" alt="" />
     </div>
 
-    <header class="relative z-10">
-      <nav class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
-        <a class="text-sm uppercase tracking-[0.35em] text-neon-amber hover:text-amber transition" href="index.html"
-          >nyan@space:~$</a
-        >
-        <ul class="flex items-center gap-6 text-sm md:text-base">
-          <li>
-            <a class="hover:text-amber transition" href="index.html">home</a>
-          </li>
-          <li>
-            <a class="hover:text-amber transition" href="about.html">about</a>
-          </li>
-          <li>
-            <a class="hover:text-amber transition" href="projects.html">projects</a>
-          </li>
-          <li>
-            <a class="hover:text-amber transition" href="blog.html">blog</a>
-          </li>
-          <li>
-            <a class="text-neon-amber" aria-current="page" href="contact.html">contact</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <!-- HEADER:START -->
+<header class="relative z-10" data-partial="header">
+  <nav class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+    <a class="text-sm uppercase tracking-[0.35em] text-neon-amber hover:text-amber transition focus-visible" href="index.html" data-nav-brand>
+      nyan@space:~$
+    </a>
+    <ul class="flex items-center gap-6 text-sm md:text-base">
+      <li>
+        <a class="hover:text-amber transition focus-visible" data-nav="home" href="index.html">home</a>
+      </li>
+      <li>
+        <a class="hover:text-amber transition focus-visible" data-nav="about" href="about.html">about</a>
+      </li>
+      <li>
+        <a class="hover:text-amber transition focus-visible" data-nav="projects" href="projects.html">projects</a>
+      </li>
+      <li>
+        <a class="hover:text-amber transition focus-visible" data-nav="blog" href="blog.html">blog</a>
+      </li>
+      <li>
+        <a class="hover:text-magenta transition focus-visible text-neon-amber" data-nav="contact" href="contact.html" aria-current="page" data-active="true">contact</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HEADER:END -->
 
     <main id="contact-main" class="relative z-10 px-6 py-16 md:py-24">
       <div class="max-w-6xl mx-auto space-y-12">
@@ -71,6 +74,7 @@
             <code
               class="contact-address"
               data-contact-address
+              data-config-email
               tabindex="0"
               role="text"
               aria-labelledby="contact-address-label"
@@ -81,6 +85,7 @@
             <a
               class="button-terminal"
               data-mailto-button
+              data-config-mailto
               href="mailto:carlos@space.dev?subject=Greetings%20from%20Nyan%20Cat%20Space&body=Hi%20Carlos%2C%0A%0AI%20just%20warped%20in%20from%20the%20portfolio%20terminal%20and%20would%20love%20to%20connect%20about..."
             >
               send email
@@ -111,17 +116,35 @@
       </div>
     </main>
 
-    <footer class="relative z-10 border-t border-neon/20 bg-black/60">
-      <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <p class="text-sm text-slate-200/70">© 2025 Carlos Masson — transmissions answered within two lunar cycles.</p>
-        <div class="flex flex-wrap gap-4 text-sm">
-          <a class="hover:text-magenta transition focus-visible" href="index.html">Home</a>
-          <a class="hover:text-magenta transition focus-visible" href="about.html">About</a>
-          <a class="hover:text-magenta transition focus-visible" href="projects.html">Projects</a>
-          <a class="hover:text-magenta transition focus-visible" href="blog.html">Blog</a>
-        </div>
-      </div>
-    </footer>
+    <!-- FOOTER:START -->
+<footer class="relative z-10 border-t border-neon/20 bg-black/60" data-partial="footer">
+  <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+    <div>
+      <p class="uppercase tracking-[0.3em] text-sm text-neon-amber">open transmission</p>
+      <p class="text-slate-200/80">
+        Email:
+        <a data-link="email" href="mailto:carlos@space.dev" class="underline focus-visible">carlos@space.dev</a>
+      </p>
+      <p class="text-slate-200/60 text-sm mt-2">
+        Built with accessibility, cosmic whimsy, and a sprinkle of rainbow pop-tarts.
+      </p>
+    </div>
+    <div class="flex gap-4 text-sm flex-wrap">
+      <a class="hover:text-amber transition focus-visible" data-link="github" href="https://github.com/1cmasson" target="_blank" rel="noopener">
+        GitHub
+      </a>
+      <a class="hover:text-amber transition focus-visible" data-link="linkedin" href="https://www.linkedin.com/in/carlosmasson" target="_blank" rel="noopener">
+        LinkedIn
+      </a>
+      <a class="hover:text-magenta transition focus-visible" href="index.html">Home</a>
+      <a class="hover:text-magenta transition focus-visible" href="about.html">About</a>
+      <a class="hover:text-magenta transition focus-visible" href="projects.html">Projects</a>
+      <a class="hover:text-magenta transition focus-visible" href="blog.html">Blog</a>
+      <a class="hover:text-magenta transition focus-visible" href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+<!-- FOOTER:END -->
 
     <script src="scripts/main.js" defer></script>
   </body>

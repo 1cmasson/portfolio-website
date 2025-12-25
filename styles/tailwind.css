@@ -469,6 +469,94 @@ button:focus-visible,
   color: rgba(244, 114, 182, 0.9);
 }
 
+.markdown-article {
+  display: grid;
+  gap: 1.5rem;
+  line-height: 1.7;
+  color: rgba(226, 232, 240, 0.9);
+}
+
+.markdown-article h1,
+.markdown-article h2,
+.markdown-article h3 {
+  color: var(--color-terminal-green);
+  text-shadow: 0 0 12px rgba(124, 252, 0, 0.45);
+}
+
+.markdown-article h1 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 600;
+}
+
+.markdown-article h2 {
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-weight: 600;
+}
+
+.markdown-article h3 {
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-weight: 500;
+  color: rgba(226, 232, 240, 0.9);
+  text-shadow: 0 0 8px rgba(124, 252, 0, 0.35);
+}
+
+.markdown-article p {
+  color: rgba(226, 232, 240, 0.85);
+}
+
+.markdown-article a {
+  color: var(--color-terminal-amber);
+  text-decoration: underline;
+  text-decoration-color: rgba(250, 204, 21, 0.6);
+}
+
+.markdown-article ul,
+.markdown-article ol {
+  padding-left: 1.5rem;
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.markdown-article ul {
+  list-style: disc;
+}
+
+.markdown-article ol {
+  list-style: decimal;
+}
+
+.markdown-article li {
+  position: relative;
+  color: rgba(226, 232, 240, 0.85);
+}
+
+.markdown-article code {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(124, 252, 0, 0.35);
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.4rem;
+  color: rgba(124, 252, 0, 0.95);
+}
+
+.markdown-article pre {
+  background: rgba(2, 6, 23, 0.95);
+  border: 1px solid rgba(124, 252, 0, 0.35);
+  border-radius: 0.8rem;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  box-shadow: 0 0 18px rgba(124, 252, 0, 0.12);
+}
+
+.markdown-article pre code {
+  display: block;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: rgba(124, 252, 0, 0.95);
+}
+
 @media (max-width: 640px) {
   .crawl-text {
     height: 160px;

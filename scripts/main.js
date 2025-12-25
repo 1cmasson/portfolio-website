@@ -257,6 +257,284 @@ function notifyMotionSubscribers() {
   });
 }
 
+function formatIsoDate(value, locale = 'en-US') {
+  if (!value) return '';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleDateString(locale, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
+}
+
+function renderBadges(target, items) {
+  if (!target) return;
+  target.innerHTML = '';
+  const hasItems = Array.isArray(items) && items.length > 0;
+  target.hidden = !hasItems;
+  if (!hasItems) return;
+  items.forEach((item) => {
+    const badge = document.createElement('span');
+    badge.className = 'border border-neon/30 px-2 py-1 rounded';
+    badge.textContent = item;
+    target.appendChild(badge);
+  });
+}
+
+function cloneTemplateContent(id) {
+  const template = document.getElementById(id);
+  if (!template) return null;
+  return template.content.cloneNode(true);
+}
+
+/**
+ * Load and render Markdown-powered project spotlight.
+ */
+function initProjectSpotlight() {
+  const target = document.querySelector('[data-markdown-target="project"]');
+  if (!target || !window.MarkdownContent) return () => {};
+
+  const titleNode = document.querySelector('[data-project-title]');
+  const summaryNode = document.querySelector('[data-project-summary]');
+  const launchNode = document.querySelector('[data-project-launch]');
+  const techNode = document.querySelector('[data-project-tech]');
+
+  window.MarkdownContent.renderMarkdownInto({
+    source: 'content/projects/starlit-console.md',
+    target,
+    fallbackId: 'project-spotlight-fallback',
+    onMeta: (meta) => {
+      if (meta.title && titleNode) {
+        titleNode.textContent = meta.title;
+      }
+      if (meta.summary && summaryNode) {
+        summaryNode.textContent = meta.summary;
+      }
+      if (launchNode) {
+        const formatted = formatIsoDate(meta.launchDate);
+        launchNode.textContent = formatted ? `Launched ${formatted}` : 'Launch date TBA';
+      }
+      renderBadges(techNode, meta.tech);
+    },
+  });
+
+  return () => {};
+}
+
+async function loadBlogManifest() {
+  try {
+    const manifestUrl = new URL('../content/blog/manifest.json', window.location.href);
+    const response = await fetch(manifestUrl.toString(), { cache: 'no-store' });
+    if (!response.ok) return [];
+    return await response.json();
+  } catch (error) {
+    console.error('Failed to load blog manifest', error);
+    return [];
+  }
+}
+
+function resolveContentUrl(path) {
+  try {
+    return new URL(path, window.location.href).toString();
+  } catch (error) {
+    console.error('Unable to resolve content URL', error);
+    return path;
+  }
+}
+
+function initBlogIndex() {
+  const container = document.querySelector('[data-blog-index]');
+  if (!container || !window.MarkdownContent) return () => {};
+
+  const list = container.querySelector('[data-blog-list]');
+  const countNode = container.querySelector('[data-blog-count]');
+  const emptyNode = container.querySelector('[data-blog-empty]');
+
+  if (!list) return () => {};
+
+  (async () => {
+    const manifest = await loadBlogManifest();
+    if (!manifest.length) {
+      if (emptyNode) emptyNode.hidden = false;
+      return;
+    }
+
+    try {
+      const posts = [];
+      for (const entry of manifest) {
+        const sourceUrl = resolveContentUrl(entry.source || '');
+        const response = await fetch(sourceUrl);
+        if (!response.ok) {
+          throw new Error(`Failed to load ${sourceUrl}`);
+        }
+        const text = await response.text();
+        const { data, body } = window.MarkdownContent.parseFrontmatter(text);
+        const html = window.MarkdownContent.renderMarkdownBody(body);
+        const probe = document.createElement('div');
+        probe.innerHTML = html;
+        const firstParagraph = probe.querySelector('p');
+        posts.push({
+          slug: entry.slug,
+          title: data?.title || entry.slug,
+          date: data?.date || '',
+          summary: data?.summary || (firstParagraph ? firstParagraph.textContent.trim() : ''),
+          tags: Array.isArray(data?.tags) ? data.tags : [],
+        });
+      }
+
+      posts.sort((a, b) => {
+        const aTime = Date.parse(a.date || '') || 0;
+        const bTime = Date.parse(b.date || '') || 0;
+        return bTime - aTime;
+      });
+
+      if (!posts.length) {
+        if (emptyNode) emptyNode.hidden = false;
+        return;
+      }
+
+      list.innerHTML = '';
+      posts.forEach((post) => {
+        const item = document.createElement('li');
+        item.className = 'console-block bg-black/50 border border-neon/20 p-4 md:p-6 rounded-lg';
+
+        const article = document.createElement('article');
+        const headingId = `blog-index-${post.slug}`;
+        article.setAttribute('aria-labelledby', headingId);
+
+        const header = document.createElement('header');
+        header.className = 'space-y-2';
+
+        const dateLabel = document.createElement('p');
+        dateLabel.className = 'text-xs uppercase tracking-[0.25em] text-neon-amber';
+        dateLabel.textContent = formatIsoDate(post.date) || 'Date TBA';
+
+        const title = document.createElement('h2');
+        title.id = headingId;
+        title.className = 'text-2xl font-semibold text-neon-green';
+        title.textContent = post.title;
+
+        header.appendChild(dateLabel);
+        header.appendChild(title);
+
+        const summary = document.createElement('p');
+        summary.className = 'text-sm text-slate-200/80 mt-4';
+        summary.textContent = post.summary || 'Mission summary coming soon.';
+
+        const tags = document.createElement('div');
+        tags.className = 'flex flex-wrap gap-2 mt-4 text-xs uppercase tracking-[0.25em] text-slate-200/70';
+        renderBadges(tags, post.tags);
+
+        const link = document.createElement('a');
+        link.className = 'inline-flex items-center gap-2 text-sm text-amber hover:text-neon-green transition mt-6 focus-visible';
+        link.href = `blog/post.html?slug=${encodeURIComponent(post.slug)}`;
+        link.innerHTML = 'Read full article <span aria-hidden="true">→</span>';
+
+        article.appendChild(header);
+        article.appendChild(summary);
+        article.appendChild(tags);
+        article.appendChild(link);
+        item.appendChild(article);
+        list.appendChild(item);
+      });
+
+      if (countNode) {
+        countNode.textContent = posts.length === 1 ? '1 post logged' : `${posts.length} posts logged`;
+      }
+      if (emptyNode) emptyNode.hidden = true;
+    } catch (error) {
+      console.error('Failed to render blog index', error);
+      if (emptyNode) emptyNode.hidden = false;
+      const fallbackId = manifest[0]?.indexTemplate;
+      if (fallbackId) {
+        const fragment = cloneTemplateContent(fallbackId);
+        if (fragment) {
+          list.innerHTML = '';
+          list.appendChild(fragment);
+        }
+      }
+    }
+  })();
+
+  return () => {};
+}
+
+function initBlogArticle() {
+  const article = document.querySelector('[data-blog-article]');
+  if (!article || !window.MarkdownContent) return () => {};
+
+  const titleNode = document.querySelector('[data-article-title]');
+  const summaryNode = document.querySelector('[data-article-summary]');
+  const dateNode = document.querySelector('[data-article-date]');
+  const tagsNode = document.querySelector('[data-article-tags]');
+  const missingNode = document.querySelector('[data-blog-missing]');
+  const defaultFallbackId = article.dataset.articleFallback;
+  let activeFallbackId = defaultFallbackId;
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug');
+
+  const showMissing = () => {
+    if (missingNode) missingNode.hidden = false;
+  };
+
+  const applyFallback = () => {
+    if (!activeFallbackId) return;
+    const fragment = cloneTemplateContent(activeFallbackId);
+    if (fragment) {
+      article.innerHTML = '';
+      article.appendChild(fragment);
+    }
+  };
+
+  if (!slug) {
+    showMissing();
+    return () => {};
+  }
+
+  (async () => {
+    const manifest = await loadBlogManifest();
+    const entry = manifest.find((item) => item.slug === slug);
+    if (!entry) {
+      showMissing();
+      applyFallback();
+      return;
+    }
+
+    activeFallbackId = entry.articleTemplate || defaultFallbackId;
+
+    try {
+      const sourceUrl = resolveContentUrl(entry.source || '');
+      const response = await fetch(sourceUrl);
+      if (!response.ok) {
+        throw new Error(`Failed to load ${sourceUrl}`);
+      }
+      const text = await response.text();
+      const { data, body } = window.MarkdownContent.parseFrontmatter(text);
+      const html = window.MarkdownContent.renderMarkdownBody(body);
+      article.innerHTML = html;
+
+      if (titleNode) titleNode.textContent = data?.title || slug;
+      if (summaryNode) {
+        summaryNode.textContent = data?.summary || summaryNode.textContent;
+      }
+      if (dateNode) {
+        const formatted = formatIsoDate(data?.date);
+        dateNode.textContent = formatted || data?.date || 'Launch date TBA';
+      }
+      renderBadges(tagsNode, Array.isArray(data?.tags) ? data.tags : []);
+      if (missingNode) missingNode.hidden = true;
+    } catch (error) {
+      console.error('Failed to render blog article', error);
+      showMissing();
+      applyFallback();
+    }
+  })();
+
+  return () => {};
+}
+
 /**
  * Progressive enhancement for the email-first contact console.
  */
@@ -346,6 +624,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const cleanupNyan = initNyanCat();
   const cleanupCrawl = initCrawl();
   const cleanupContact = initContactConsole();
+  const cleanupProject = initProjectSpotlight();
+  const cleanupBlogIndex = initBlogIndex();
+  const cleanupBlogArticle = initBlogArticle();
   initMotionControls();
 
   window.addEventListener('storage', (event) => {
@@ -373,6 +654,9 @@ document.addEventListener('DOMContentLoaded', () => {
     cleanupNyan();
     cleanupCrawl();
     if (typeof cleanupContact === 'function') cleanupContact();
+    if (typeof cleanupProject === 'function') cleanupProject();
+    if (typeof cleanupBlogIndex === 'function') cleanupBlogIndex();
+    if (typeof cleanupBlogArticle === 'function') cleanupBlogArticle();
   });
 });
 

@@ -15,9 +15,9 @@
 
 ## Phase 0: Foundations (must complete before user stories)
 
-- [ ] T200 Update repository documentation (`README.md`, `specs/002-build-dedicated-contact/research.md`) to remove Sanity references and outline the new Markdown content workflow.  
-- [ ] T201 Ensure `contact.html` retains header/footer parity with other pages after the Netlify removal and capture baseline copy in `specs/002-build-dedicated-contact/quickstart.md`.  
-- [ ] T202 Scaffold content directories (`content/projects/`, `content/blog/`) with placeholder Markdown files and decide on frontmatter schema documented in `research.md`.  
+- [x] T200 Update repository documentation (`README.md`, `specs/002-build-dedicated-contact/research.md`) to remove Sanity references and outline the new Markdown content workflow.  
+- [x] T201 Ensure `contact.html` retains header/footer parity with other pages after the Netlify removal and capture baseline copy in `specs/002-build-dedicated-contact/quickstart.md`.  
+- [x] T202 Scaffold content directories (`content/projects/`, `content/blog/`) with placeholder Markdown files and decide on frontmatter schema documented in `research.md`.  
 
 ---
 
@@ -40,18 +40,18 @@
 
 ## Phase 3: User Story 3 – Read Markdown-Powered Project Spotlights (Priority: P2)
 
-- [ ] T230 [US3] Define Markdown frontmatter schema for projects in `specs/002-build-dedicated-contact/research.md` (fields: title, summary, tech, launchDate, links).  
-- [ ] T231 [US3] Implement a Markdown loading/parsing helper (`scripts/content/markdown.js`) that converts project Markdown to sanitized HTML without external dependencies.  
-- [ ] T232 [P] [US3] Create a project article template (`projects/project.html` or dynamic section within `projects.html`) that renders parsed Markdown inside an `<article>` with terminal styling.  
-- [ ] T233 [US3] Ensure JavaScript-disabled fallback by bundling pre-rendered HTML (e.g., inline `<template>` with preprocessed Markdown) and document the approach in `quickstart.md`.  
+- [x] T230 [US3] Define Markdown frontmatter schema for projects in `specs/002-build-dedicated-contact/research.md` (fields: title, summary, tech, launchDate, links).  
+- [x] T231 [US3] Implement a Markdown loading/parsing helper (`scripts/content/markdown.js`) that converts project Markdown to sanitized HTML without external dependencies.  
+- [x] T232 [P] [US3] Create a project article template (`projects/project.html` or dynamic section within `projects.html`) that renders parsed Markdown inside an `<article>` with terminal styling.  
+- [x] T233 [US3] Ensure JavaScript-disabled fallback by bundling pre-rendered HTML (e.g., inline `<template>` with preprocessed Markdown) and document the approach in `quickstart.md`.  
 
 ---
 
 ## Phase 4: User Story 4 – Explore Markdown Blog Entries (Priority: P2)
 
-- [ ] T240 [US4] Mirror the frontmatter schema for blog posts and capture author/date/tag guidance in `research.md`.  
-- [ ] T241 [US4] Build blog index rendering in `blog.html` that lists Markdown posts in reverse chronological order with excerpts generated from content.  
-- [ ] T242 [US4] Create blog detail templates (e.g., `blog/post.html`) that render Markdown HTML with semantic headings, code block styling, and accessible navigation back to the index.  
+- [x] T240 [US4] Mirror the frontmatter schema for blog posts and capture author/date/tag guidance in `research.md`.  
+- [x] T241 [US4] Build blog index rendering in `blog.html` that lists Markdown posts in reverse chronological order with excerpts generated from content.  
+- [x] T242 [US4] Create blog detail templates (e.g., `blog/post.html`) that render Markdown HTML with semantic headings, code block styling, and accessible navigation back to the index.  
 - [ ] T243 [US4] Add unit or smoke tests (if feasible) to validate Markdown parsing output and guard against script injection.  
 
 ---
