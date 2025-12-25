@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-terminal">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog — Nyan Cat Space Terminal</title>
+    <meta
+      name="description"
+      content="Explore Markdown-powered transmissions straight from the Nyan Cat Space terminal."
+    />
+    <link rel="stylesheet" href="styles/tailwind-base.css" />
+    <link rel="stylesheet" href="styles/tailwind.css" />
+  </head>
+  <body class="bg-space text-neon-green font-terminal min-h-screen overflow-x-hidden antialiased">
+    <a class="skip-link" href="#blog-main">Skip to blog feed</a>
+    <canvas class="starfield-canvas" data-starfield aria-hidden="true"></canvas>
+    <div
+      class="nyan-container"
+      data-nyan
+      role="img"
+      aria-label="Nyan Cat ferries new blog posts across the galaxy."
+    >
+      <img src="assets/nyan/nyan-cat.gif" alt="" />
+    </div>
+
+    <!-- HEADER:START -->
+<header class="relative z-10" data-partial="header">
+  <nav class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+    <a class="text-sm uppercase tracking-[0.35em] text-neon-amber hover:text-amber transition focus-visible" href="index.html" data-nav-brand>
+      nyan@space:~$
+    </a>
+    <ul class="flex items-center gap-6 text-sm md:text-base">
+      <li>
+        <a class="hover:text-amber transition focus-visible" data-nav="home" href="index.html">home</a>
+      </li>
+      <li>
+        <a class="hover:text-amber transition focus-visible" data-nav="about" href="about.html">about</a>
+      </li>
+      <li>
+        <a class="hover:text-amber transition focus-visible" data-nav="projects" href="projects.html">projects</a>
+      </li>
+      <li>
+        <a class="hover:text-amber transition focus-visible text-neon-amber" data-nav="blog" href="blog.html" aria-current="page" data-active="true">blog</a>
+      </li>
+      <li>
+        <a class="hover:text-magenta transition focus-visible" data-nav="contact" href="contact.html">contact</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HEADER:END -->
+
+    <main id="blog-main" class="relative z-10 px-6 py-16 md:py-24">
+      <div class="max-w-6xl mx-auto space-y-12">
+        <section aria-labelledby="blog-hero" class="space-y-6">
+          <p class="text-sm uppercase tracking-[0.35em] text-neon-amber">captain's log</p>
+          <h1 id="blog-hero" class="text-4xl md:text-5xl font-semibold headline-glow">Blog Launch Pad</h1>
+          <p class="text-slate-200/80 text-lg max-w-3xl">
+            Markdown transmissions live inside the repo now—no third-party CMS required. Browse recent posts below or
+            open any entry to read the full article with the same terminal glow.
+          </p>
+        </section>
+
+        <section class="console-block space-y-6 rounded-xl border border-neon/30 bg-black/60 p-6 md:p-8 shadow-[0_0_40px_rgba(80,255,163,0.08)]" aria-labelledby="blog-index-heading" data-blog-index>
+          <header class="space-y-3">
+            <p class="text-xs uppercase tracking-[0.35em] text-neon-amber">recent transmissions</p>
+            <div class="flex flex-wrap items-baseline gap-3">
+              <h2 id="blog-index-heading" class="text-3xl font-semibold text-neon-green">Latest posts</h2>
+              <span class="text-xs uppercase tracking-[0.25em] text-slate-200/70" data-blog-count>1 post logged</span>
+            </div>
+            <p class="text-slate-200/80 text-base max-w-3xl" data-blog-intro>
+              Posts render straight from local Markdown. Enable JavaScript for live parsing, or read the pre-rendered versions below.
+            </p>
+          </header>
+
+          <ul class="space-y-6" data-blog-list>
+            <li class="console-block bg-black/50 border border-neon/20 p-4 md:p-6 rounded-lg">
+              <article aria-labelledby="blog-post-fallback-title">
+                <header class="space-y-2">
+                  <p class="text-xs uppercase tracking-[0.25em] text-neon-amber">2025-03-08</p>
+                  <h2 id="blog-post-fallback-title" class="text-2xl font-semibold text-neon-green">
+                    Plotting the Markdown Orbit
+                  </h2>
+                </header>
+                <p class="text-sm text-slate-200/80 mt-4">
+                  How we swapped Sanity for local Markdown while keeping the cosmic terminal vibe intact.
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4 text-xs uppercase tracking-[0.25em] text-slate-200/70">
+                  <span class="border border-neon/30 px-2 py-1 rounded">markdown</span>
+                  <span class="border border-neon/30 px-2 py-1 rounded">accessibility</span>
+                  <span class="border border-neon/30 px-2 py-1 rounded">tooling</span>
+                </div>
+                <a class="inline-flex items-center gap-2 text-sm text-amber hover:text-neon-green transition mt-6 focus-visible" href="blog/post.html?slug=2025-03-08-markdown-orbit">
+                  Read full article <span aria-hidden="true">→</span>
+                </a>
+              </article>
+            </li>
+          </ul>
+          <p class="text-sm text-slate-200/70" data-blog-empty hidden>
+            No posts yet. Add a Markdown file under `content/blog/` and update `content/blog/manifest.json` to surface it here.
+          </p>
+        </section>
+      </div>
+      <template id="blog-index-item-2025-03-08-markdown-orbit">
+        <li class="console-block bg-black/50 border border-neon/20 p-4 md:p-6 rounded-lg">
+          <article>
+            <header class="space-y-2">
+              <p class="text-xs uppercase tracking-[0.25em] text-neon-amber">2025-03-08</p>
+              <h2 class="text-2xl font-semibold text-neon-green">Plotting the Markdown Orbit</h2>
+            </header>
+            <p class="text-sm text-slate-200/80 mt-4">
+              How we swapped Sanity for local Markdown while keeping the cosmic terminal vibe intact.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-4 text-xs uppercase tracking-[0.25em] text-slate-200/70">
+              <span class="border border-neon/30 px-2 py-1 rounded">markdown</span>
+              <span class="border border-neon/30 px-2 py-1 rounded">accessibility</span>
+              <span class="border border-neon/30 px-2 py-1 rounded">tooling</span>
+            </div>
+            <a class="inline-flex items-center gap-2 text-sm text-amber hover:text-neon-green transition mt-6 focus-visible" href="blog/post.html?slug=2025-03-08-markdown-orbit">
+              Read full article <span aria-hidden="true">→</span>
+            </a>
+          </article>
+        </li>
+      </template>
+    </main>
+
+    <!-- FOOTER:START -->
+<footer class="relative z-10 border-t border-neon/20 bg-black/60" data-partial="footer">
+  <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+    <div>
+      <p class="uppercase tracking-[0.3em] text-sm text-neon-amber">open transmission</p>
+      <p class="text-slate-200/80">
+        Email:
+        <a data-link="email" href="mailto:carlos@space.dev" class="underline focus-visible">carlos@space.dev</a>
+      </p>
+      <p class="text-slate-200/60 text-sm mt-2">
+        Built with accessibility, cosmic whimsy, and a sprinkle of rainbow pop-tarts.
+      </p>
+    </div>
+    <div class="flex gap-4 text-sm flex-wrap">
+      <a class="hover:text-amber transition focus-visible" data-link="github" href="https://github.com/1cmasson" target="_blank" rel="noopener">
+        GitHub
+      </a>
+      <a class="hover:text-amber transition focus-visible" data-link="linkedin" href="https://www.linkedin.com/in/carlosmasson" target="_blank" rel="noopener">
+        LinkedIn
+      </a>
+      <a class="hover:text-magenta transition focus-visible" href="index.html">Home</a>
+      <a class="hover:text-magenta transition focus-visible" href="about.html">About</a>
+      <a class="hover:text-magenta transition focus-visible" href="projects.html">Projects</a>
+      <a class="hover:text-magenta transition focus-visible" href="blog.html">Blog</a>
+      <a class="hover:text-magenta transition focus-visible" href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+<!-- FOOTER:END -->
+
+    <script src="scripts/content/markdown.js" defer></script>
+    <script src="scripts/main.js" defer></script>
+  </body>
+</html>

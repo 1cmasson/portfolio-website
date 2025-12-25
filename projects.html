@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-terminal">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects — Nyan Cat Space Terminal</title>
+    <meta
+      name="description"
+      content="Browse creative experiments and professional missions orbiting the Nyan Cat Space terminal."
+    />
+    <link rel="stylesheet" href="styles/tailwind-base.css" />
+    <link rel="stylesheet" href="styles/tailwind.css" />
+  </head>
+  <body class="bg-space text-neon-green font-terminal min-h-screen overflow-x-hidden antialiased">
+    <a class="skip-link" href="#projects-main">Skip to projects</a>
+    <canvas class="starfield-canvas" data-starfield aria-hidden="true"></canvas>
+    <div
+      class="nyan-container"
+      data-nyan
+      role="img"
+      aria-label="Nyan Cat glides past the planet grid."
+    >
+      <img src="assets/nyan/nyan-cat.gif" alt="" />
+    </div>
+
+    <!-- HEADER:START -->
+<header class="relative z-10" data-partial="header">
+  <nav class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+    <a class="text-sm uppercase tracking-[0.35em] text-neon-amber hover:text-amber transition focus-visible" href="index.html" data-nav-brand>
+      nyan@space:~$
+    </a>
+    <ul class="flex items-center gap-6 text-sm md:text-base">
+      <li>
+        <a class="hover:text-amber transition focus-visible" data-nav="home" href="index.html">home</a>
+      </li>
+      <li>
+        <a class="hover:text-amber transition focus-visible" data-nav="about" href="about.html">about</a>
+      </li>
+      <li>
+        <a class="hover:text-amber transition focus-visible text-neon-amber" data-nav="projects" href="projects.html" aria-current="page" data-active="true">projects</a>
+      </li>
+      <li>
+        <a class="hover:text-amber transition focus-visible" data-nav="blog" href="blog.html">blog</a>
+      </li>
+      <li>
+        <a class="hover:text-magenta transition focus-visible" data-nav="contact" href="contact.html">contact</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HEADER:END -->
+
+    <main id="projects-main" class="relative z-10 px-6 py-16 md:py-24">
+      <div class="max-w-6xl mx-auto space-y-12">
+        <section aria-labelledby="projects-heading" class="space-y-6">
+          <p class="text-sm uppercase tracking-[0.35em] text-neon-amber">project orbit</p>
+          <h1 id="projects-heading" class="text-4xl md:text-5xl font-semibold headline-glow">Planets &amp; missions</h1>
+          <p class="text-slate-200/80 text-lg max-w-3xl">
+            A collection of shipped missions, experimental prototypes, and narrative-driven playgrounds. Each planet
+            highlights impact, tools, and cosmic learnings.
+          </p>
+        </section>
+
+        <section class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3" aria-label="Project cards">
+          <article class="planet-card" aria-label="Project: Cosmic Control Room">
+            <header class="flex items-center justify-between mb-4">
+              <span class="planet-emoji" aria-hidden="true">🛰️</span>
+              <h2 class="text-xl font-semibold text-neon-green">Cosmic Control Room</h2>
+            </header>
+            <p class="text-sm text-slate-200/80 mb-4">
+              Led design system overhaul for mission dashboards serving 200+ analysts. Introduced accessible component
+              tokens, cut UI defects by 45%.
+            </p>
+            <a
+              class="inline-flex items-center gap-2 text-sm text-amber hover:text-neon-green transition focus-visible"
+              href="https://github.com/1cmasson"
+              target="_blank"
+              rel="noopener"
+              >view case study<span aria-hidden="true">→</span></a
+            >
+          </article>
+
+          <article class="planet-card" aria-label="Project: Aurora Synth Lab">
+            <header class="flex items-center justify-between mb-4">
+              <span class="planet-emoji" aria-hidden="true">🎹</span>
+              <h2 class="text-xl font-semibold text-neon-green">Aurora Synth Lab</h2>
+            </header>
+            <p class="text-sm text-slate-200/80 mb-4">
+              Browser-based synthesizer built with Web Audio and Canvas. Features cat-triggered pads and modular effects
+              pipeline for live shows.
+            </p>
+            <span class="text-xs uppercase tracking-[0.3em] text-slate-200/60">open-sourced experiment</span>
+          </article>
+
+          <article class="planet-card" aria-label="Project: Nebula Narrative Engine">
+            <header class="flex items-center justify-between mb-4">
+              <span class="planet-emoji" aria-hidden="true">📚</span>
+              <h2 class="text-xl font-semibold text-neon-green">Nebula Narrative Engine</h2>
+            </header>
+            <p class="text-sm text-slate-200/80 mb-4">
+              Interactive fiction toolkit enabling branching stories delivered via terminal UI. Supports Markdown authoring
+              and real-time previews.
+            </p>
+            <a
+              class="inline-flex items-center gap-2 text-sm text-amber hover:text-neon-green transition focus-visible"
+              href="https://github.com/1cmasson"
+              target="_blank"
+              rel="noopener"
+              >source code<span aria-hidden="true">→</span></a
+            >
+          </article>
+
+          <article class="planet-card" aria-label="Project: Rainbow Drive Fleet">
+            <header class="flex items-center justify-between mb-4">
+              <span class="planet-emoji" aria-hidden="true">🚀</span>
+              <h2 class="text-xl font-semibold text-neon-green">Rainbow Drive Fleet</h2>
+            </header>
+            <p class="text-sm text-slate-200/80 mb-4">
+              Fleet of procedurally generated cat rockets displayed at art festivals. Powered by WebGL shaders and MIDI
+              inputs.
+            </p>
+            <span class="text-xs uppercase tracking-[0.3em] text-slate-200/60">in-flight exhibition</span>
+          </article>
+
+          <article class="planet-card" aria-label="Project: Astro Ally">
+            <header class="flex items-center justify-between mb-4">
+              <span class="planet-emoji" aria-hidden="true">🧭</span>
+              <h2 class="text-xl font-semibold text-neon-green">Astro Ally</h2>
+            </header>
+            <p class="text-sm text-slate-200/80 mb-4">
+              Accessibility-first companion app offering WCAG checklists and live contrast tooling inside browser panels.
+            </p>
+            <a
+              class="inline-flex items-center gap-2 text-sm text-amber hover:text-neon-green transition focus-visible"
+              href="https://github.com/1cmasson"
+              target="_blank"
+              rel="noopener"
+              >design doc<span aria-hidden="true">→</span></a
+            >
+          </article>
+
+          <article class="planet-card" aria-label="Project: Lint in Space">
+            <header class="flex items-center justify-between mb-4">
+              <span class="planet-emoji" aria-hidden="true">🛰️</span>
+              <h2 class="text-xl font-semibold text-neon-green">Lint in Space</h2>
+            </header>
+            <p class="text-sm text-slate-200/80 mb-4">
+              ESLint plugin suite that enforces motion safety, color contrast, and terminal-friendly typography for web
+              teams.
+            </p>
+            <span class="text-xs uppercase tracking-[0.3em] text-slate-200/60">tooling mission</span>
+          </article>
+        </section>
+
+        <section class="console-block space-y-6 rounded-xl border border-neon/30 bg-black/60 p-6 md:p-8 shadow-[0_0_40px_rgba(80,255,163,0.08)]" aria-labelledby="project-spotlight-heading">
+          <header class="space-y-2">
+            <p class="text-xs uppercase tracking-[0.35em] text-neon-amber">project spotlight</p>
+            <div class="flex flex-wrap items-baseline gap-3">
+              <h2 id="project-spotlight-heading" class="text-3xl font-semibold text-neon-green" data-project-title>Starlit Console Uplink</h2>
+              <span class="text-sm text-slate-200/70" data-project-launch>Launched 16 Jul 2025</span>
+            </div>
+            <p class="text-slate-200/80 text-base max-w-3xl" data-project-summary>
+              Pair-programming command center that syncs commits with cosmic telemetry and keeps collaborators in flow.
+            </p>
+            <div class="flex flex-wrap gap-2 text-xs uppercase tracking-[0.25em] text-slate-200/70" data-project-tech>
+              <span class="border border-neon/30 px-2 py-1 rounded">Vanilla JS</span>
+              <span class="border border-neon/30 px-2 py-1 rounded">Tailwind CSS</span>
+              <span class="border border-neon/30 px-2 py-1 rounded">Web Components</span>
+            </div>
+          </header>
+          <article class="markdown-article space-y-6" data-markdown-target="project">
+            <h1>Mission Overview</h1>
+            <p>The Starlit Console bridges remote collaborators through a retro terminal dashboard. Each pane renders markdown logs, commit diffs, and mission alerts in real time.</p>
+            <h2>Highlights</h2>
+            <ul>
+              <li>Terminal-grade contrast modes with <code>prefers-reduced-motion</code> guards.</li>
+              <li>Clipboard helper for sharing invite codes during live pairing.</li>
+              <li>Offline-first caching so jump drives stay in sync even without uplink coverage.</li>
+            </ul>
+            <pre><code data-lang="js">// Wormhole handshake (simplified)
+await uplink.sync({ channel: 'mission-alpha', retries: 3 });</code></pre>
+            <p><strong>Crew feedback:</strong> <em>"Feels like coding from a star cruiser."</em> — Beta testers at the Nebula Forge</p>
+            <h2>Next Steps</h2>
+            <ol>
+              <li>Expand telemetry overlay for CPU/RAM monitoring.</li>
+              <li>Add blog stream powered by the new Markdown engine.</li>
+              <li>Capture Playwright regression journeys once the parser is finalized.</li>
+            </ol>
+          </article>
+        </section>
+      </div>
+      <template id="project-spotlight-fallback">
+        <article class="markdown-article space-y-6">
+          <h1>Mission Overview</h1>
+          <p>The Starlit Console bridges remote collaborators through a retro terminal dashboard. Each pane renders markdown logs, commit diffs, and mission alerts in real time.</p>
+          <h2>Highlights</h2>
+          <ul>
+            <li>Terminal-grade contrast modes with <code>prefers-reduced-motion</code> guards.</li>
+            <li>Clipboard helper for sharing invite codes during live pairing.</li>
+            <li>Offline-first caching so jump drives stay in sync even without uplink coverage.</li>
+          </ul>
+          <pre><code data-lang="js">// Wormhole handshake (simplified)
+await uplink.sync({ channel: 'mission-alpha', retries: 3 });</code></pre>
+          <p><strong>Crew feedback:</strong> <em>"Feels like coding from a star cruiser."</em> — Beta testers at the Nebula Forge</p>
+          <h2>Next Steps</h2>
+          <ol>
+            <li>Expand telemetry overlay for CPU/RAM monitoring.</li>
+            <li>Add blog stream powered by the new Markdown engine.</li>
+            <li>Capture Playwright regression journeys once the parser is finalized.</li>
+          </ol>
+        </article>
+      </template>
+    </main>
+
+    <!-- FOOTER:START -->
+<footer class="relative z-10 border-t border-neon/20 bg-black/60" data-partial="footer">
+  <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+    <div>
+      <p class="uppercase tracking-[0.3em] text-sm text-neon-amber">open transmission</p>
+      <p class="text-slate-200/80">
+        Email:
+        <a data-link="email" href="mailto:carlos@space.dev" class="underline focus-visible">carlos@space.dev</a>
+      </p>
+      <p class="text-slate-200/60 text-sm mt-2">
+        Built with accessibility, cosmic whimsy, and a sprinkle of rainbow pop-tarts.
+      </p>
+    </div>
+    <div class="flex gap-4 text-sm flex-wrap">
+      <a class="hover:text-amber transition focus-visible" data-link="github" href="https://github.com/1cmasson" target="_blank" rel="noopener">
+        GitHub
+      </a>
+      <a class="hover:text-amber transition focus-visible" data-link="linkedin" href="https://www.linkedin.com/in/carlosmasson" target="_blank" rel="noopener">
+        LinkedIn
+      </a>
+      <a class="hover:text-magenta transition focus-visible" href="index.html">Home</a>
+      <a class="hover:text-magenta transition focus-visible" href="about.html">About</a>
+      <a class="hover:text-magenta transition focus-visible" href="projects.html">Projects</a>
+      <a class="hover:text-magenta transition focus-visible" href="blog.html">Blog</a>
+      <a class="hover:text-magenta transition focus-visible" href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+<!-- FOOTER:END -->
+
+    <script src="scripts/content/markdown.js" defer></script>
+    <script src="scripts/main.js" defer></script>
+  </body>
+</html>

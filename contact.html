@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-terminal">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact — Nyan Cat Space Terminal</title>
+    <meta
+      name="description"
+      content="Open a direct transmission to Carlos via email from the Nyan Cat Space contact console."
+    />
+    <link rel="stylesheet" href="styles/tailwind-base.css" />
+    <link rel="stylesheet" href="styles/tailwind.css" />
+  </head>
+  <body class="bg-space text-neon-green font-terminal min-h-screen overflow-x-hidden antialiased">
+    <a class="skip-link" href="#contact-main">Skip to contact console</a>
+    <canvas class="starfield-canvas" data-starfield aria-hidden="true"></canvas>
+    <div
+      class="nyan-container"
+      data-nyan
+      role="img"
+      aria-label="Nyan Cat preps the contact console with a rainbow trail."
+    >
+      <img src="assets/nyan/nyan-cat.gif" alt="" />
+    </div>
+
+    <!-- HEADER:START -->
+<header class="relative z-10" data-partial="header">
+  <nav class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+    <a class="text-sm uppercase tracking-[0.35em] text-neon-amber hover:text-amber transition focus-visible" href="index.html" data-nav-brand>
+      nyan@space:~$
+    </a>
+    <ul class="flex items-center gap-6 text-sm md:text-base">
+      <li>
+        <a class="hover:text-amber transition focus-visible" data-nav="home" href="index.html">home</a>
+      </li>
+      <li>
+        <a class="hover:text-amber transition focus-visible" data-nav="about" href="about.html">about</a>
+      </li>
+      <li>
+        <a class="hover:text-amber transition focus-visible" data-nav="projects" href="projects.html">projects</a>
+      </li>
+      <li>
+        <a class="hover:text-amber transition focus-visible" data-nav="blog" href="blog.html">blog</a>
+      </li>
+      <li>
+        <a class="hover:text-magenta transition focus-visible text-neon-amber" data-nav="contact" href="contact.html" aria-current="page" data-active="true">contact</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HEADER:END -->
+
+    <main id="contact-main" class="relative z-10 px-6 py-16 md:py-24">
+      <div class="max-w-6xl mx-auto space-y-12">
+        <section aria-labelledby="contact-hero" class="space-y-6">
+          <p class="text-sm uppercase tracking-[0.35em] text-neon-amber">open transmission</p>
+          <h1 id="contact-hero" class="text-4xl md:text-5xl font-semibold headline-glow">Contact Console</h1>
+          <p class="text-slate-200/80 text-lg max-w-3xl">
+            Ready to collaborate, chat about cosmic UX, or share a playlist? Fire up a direct email using the
+            transmission controls below and the message will land in Carlos&rsquo; inbox in a flash.
+          </p>
+        </section>
+
+        <section aria-labelledby="contact-console" class="console-block space-y-6" data-contact-console>
+          <header id="contact-console">transmission controls</header>
+          <p class="text-sm text-slate-200/80">
+            Open an email draft or copy the address if you prefer webmail. The console keeps everything accessible for
+            keyboard and screen-reader pilots.
+          </p>
+
+          <div class="contact-address-block" data-contact-address-block>
+            <span class="contact-address-label" id="contact-address-label">mission email</span>
+            <code
+              class="contact-address"
+              data-contact-address
+              data-config-email
+              tabindex="0"
+              role="text"
+              aria-labelledby="contact-address-label"
+            >carlos@space.dev</code>
+          </div>
+
+          <div class="contact-actions" data-contact-actions>
+            <a
+              class="button-terminal"
+              data-mailto-button
+              data-config-mailto
+              href="mailto:carlos@space.dev?subject=Greetings%20from%20Nyan%20Cat%20Space&body=Hi%20Carlos%2C%0A%0AI%20just%20warped%20in%20from%20the%20portfolio%20terminal%20and%20would%20love%20to%20connect%20about..."
+            >
+              send email
+              <span aria-hidden="true">➜</span>
+            </a>
+            <button class="button-terminal button-secondary" type="button" data-copy-email>
+              copy email
+              <span aria-hidden="true">⌘C</span>
+            </button>
+          </div>
+
+          <p class="terminal-hint">
+            No default mail client? Highlight the address above or use the copy helper, then paste into your favorite
+            webmail or messenger.
+          </p>
+
+          <p class="contact-status" role="status" aria-live="polite" data-copy-status>
+            Transmission status will appear here after copying the address.
+          </p>
+
+          <noscript>
+            <p class="terminal-hint text-slate-200/70">
+              JavaScript is disabled, so the copy helper is unavailable. The email address remains selectable; use your
+              OS shortcut to copy it manually.
+            </p>
+          </noscript>
+        </section>
+      </div>
+    </main>
+
+    <!-- FOOTER:START -->
+<footer class="relative z-10 border-t border-neon/20 bg-black/60" data-partial="footer">
+  <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+    <div>
+      <p class="uppercase tracking-[0.3em] text-sm text-neon-amber">open transmission</p>
+      <p class="text-slate-200/80">
+        Email:
+        <a data-link="email" href="mailto:carlos@space.dev" class="underline focus-visible">carlos@space.dev</a>
+      </p>
+      <p class="text-slate-200/60 text-sm mt-2">
+        Built with accessibility, cosmic whimsy, and a sprinkle of rainbow pop-tarts.
+      </p>
+    </div>
+    <div class="flex gap-4 text-sm flex-wrap">
+      <a class="hover:text-amber transition focus-visible" data-link="github" href="https://github.com/1cmasson" target="_blank" rel="noopener">
+        GitHub
+      </a>
+      <a class="hover:text-amber transition focus-visible" data-link="linkedin" href="https://www.linkedin.com/in/carlosmasson" target="_blank" rel="noopener">
+        LinkedIn
+      </a>
+      <a class="hover:text-magenta transition focus-visible" href="index.html">Home</a>
+      <a class="hover:text-magenta transition focus-visible" href="about.html">About</a>
+      <a class="hover:text-magenta transition focus-visible" href="projects.html">Projects</a>
+      <a class="hover:text-magenta transition focus-visible" href="blog.html">Blog</a>
+      <a class="hover:text-magenta transition focus-visible" href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+<!-- FOOTER:END -->
+
+    <script src="scripts/main.js" defer></script>
+  </body>
+</html>

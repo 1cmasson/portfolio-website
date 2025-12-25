@@ -1,0 +1,905 @@
+{
+  "_note": "Detailed map of textual content across the portfolio to support copy brainstorming. Each entry captures where the text lives, its current copy, and guidance on tone or intent.",
+  "globalComponents": {
+    "header": {
+      "description": "Shared navigation bar rendered on every page.",
+      "fields": [
+        {
+          "key": "brand.prompt",
+          "selector": "header[data-partial='header'] a[data-nav-brand]",
+          "currentText": "nyan@space:~$",
+          "purpose": "Terminal-style brand prompt that anchors the navigation.",
+          "toneHints": "Should feel like a command-line path; brief, lowercase, playful hacker vibe."
+        },
+        {
+          "key": "nav.home",
+          "selector": "header[data-partial='header'] a[data-nav='home']",
+          "currentText": "home",
+          "purpose": "Primary navigation link back to the landing page.",
+          "toneHints": "Keep lowercase to reinforce terminal aesthetic; single word."
+        },
+        {
+          "key": "nav.about",
+          "selector": "header[data-partial='header'] a[data-nav='about']",
+          "currentText": "about",
+          "purpose": "Navigation link into the About/log page.",
+          "toneHints": "Lowercase command-word; optionally append cue like 'about' vs 'about.log'."
+        },
+        {
+          "key": "nav.projects",
+          "selector": "header[data-partial='header'] a[data-nav='projects']",
+          "currentText": "projects",
+          "purpose": "Navigation link to projects index.",
+          "toneHints": "Keep short and descriptive; lowercase noun."
+        },
+        {
+          "key": "nav.blog",
+          "selector": "header[data-partial='header'] a[data-nav='blog']",
+          "currentText": "blog",
+          "purpose": "Navigation link to Markdown-powered blog.",
+          "toneHints": "Single lowercase noun; could be 'blog.log' if leaning into shell vibe."
+        },
+        {
+          "key": "nav.contact",
+          "selector": "header[data-partial='header'] a[data-nav='contact']",
+          "currentText": "contact",
+          "purpose": "Navigation link to the contact console.",
+          "toneHints": "Lowercase action; could become 'contact.sh' if stronger CLI flavor desired."
+        }
+      ]
+    },
+    "footer": {
+      "description": "Shared footer console block mirrored from index.html.",
+      "fields": [
+        {
+          "key": "footer.sectionLabel",
+          "selector": "footer[data-partial='footer'] p.uppercase",
+          "currentText": "open transmission",
+          "purpose": "Eyebrow label inviting contact.",
+          "toneHints": "Uppercase, mission-control language; keep concise."
+        },
+        {
+          "key": "footer.emailLabel",
+          "selector": "footer[data-partial='footer'] p.text-slate-200/80",
+          "currentText": "Email:",
+          "purpose": "Inline label introducing the email address.",
+          "toneHints": "Plain language; can add playful suffix like 'Email uplink:'."
+        },
+        {
+          "key": "footer.emailValue",
+          "selector": "footer[data-partial='footer'] a[data-link='email']",
+          "currentText": "carlos@space.dev",
+          "purpose": "Displayed contact email (mailto populated from config).",
+          "toneHints": "Keep as raw address for easy copy; no additional copy here."
+        },
+        {
+          "key": "footer.tagline",
+          "selector": "footer[data-partial='footer'] p.text-slate-200/60",
+          "currentText": "Built with accessibility, cosmic whimsy, and a sprinkle of rainbow pop-tarts.",
+          "purpose": "Footer tagline summarizing site ethos.",
+          "toneHints": "Playful but sincere; highlights accessibility, delight, and whimsy."
+        },
+        {
+          "key": "footer.social.github",
+          "selector": "footer[data-partial='footer'] a[data-link='github']",
+          "currentText": "GitHub",
+          "purpose": "Label for GitHub link.",
+          "toneHints": "Proper noun; could become 'GitHub hangar' if more flavor desired."
+        },
+        {
+          "key": "footer.social.linkedin",
+          "selector": "footer[data-partial='footer'] a[data-link='linkedin']",
+          "currentText": "LinkedIn",
+          "purpose": "Label for LinkedIn link.",
+          "toneHints": "Professional tone; optional to stylize as 'LinkedIn dock'."
+        },
+        {
+          "key": "footer.nav.links",
+          "selector": "footer[data-partial='footer'] .flex.gap-4 a:not([data-link])",
+          "currentText": ["Home", "About", "Projects", "Blog", "Contact"],
+          "purpose": "Secondary navigation links duplicated in footer.",
+          "toneHints": "Title case currently; could be aligned to lowercase CLI tone if preferred."
+        }
+      ]
+    }
+  },
+  "pages": {
+    "index.html": {
+      "metaDescription": "Explore Nyan Cat Space, a terminal-inspired portfolio floating through the cosmos with starfields, Nyan Cat fly-bys, and projects orbiting in neon glow.",
+      "skipLink": {
+        "selector": "body > a.skip-link",
+        "currentText": "Skip to cosmic content",
+        "purpose": "Accessibility affordance to jump directly into the main content.",
+        "toneHints": "Fun but clear; mention 'cosmic content', 'main console', or similar mission language."
+      },
+      "sections": [
+        {
+          "id": "hero",
+          "selector": "section[aria-labelledby='hero-title']",
+          "description": "Landing hero introducing the portfolio and key CTAs.",
+          "fields": [
+            {
+              "key": "hero.eyebrow",
+              "selector": "section[aria-labelledby='hero-title'] p.text-sm",
+              "currentText": "init launch sequence...",
+              "purpose": "Eyebrow command that sets the terminal tone.",
+              "toneHints": "Use pseudo-shell commands; can rotate with other playful boot messages."
+            },
+            {
+              "key": "hero.heading",
+              "selector": "#hero-title",
+              "currentText": "Nyan Cat Space Terminal",
+              "purpose": "Primary headline announcing the experience.",
+              "toneHints": "Headline should feel like a system name; can hint at role or mission."
+            },
+            {
+              "key": "hero.body",
+              "selector": "section[aria-labelledby='hero-title'] p.text-lg",
+              "currentText": "Welcome aboard the cosmic command line. I'm Carlos Masson, a full-stack explorer crafting playful experiences that orbit creativity, accessibility, and delightful UX. This terminal is a repository of adventures launched across the galaxy—from professional missions to experimental nebulae.",
+              "purpose": "Hero narrative summarising persona and site scope.",
+              "toneHints": "Friendly and imaginative; balances professional credibility with cosmic flavour."
+            },
+            {
+              "key": "hero.primaryCta",
+              "selector": "section[aria-labelledby='hero-title'] a[href='about.html'] span:first-child",
+              "currentText": "about",
+              "purpose": "Primary CTA label directing to About page.",
+              "toneHints": "Lowercase; can be action-oriented like 'enter log'."
+            },
+            {
+              "key": "hero.secondaryCta",
+              "selector": "section[aria-labelledby='hero-title'] a[href='projects.html'] span:first-child",
+              "currentText": "projects",
+              "purpose": "Secondary CTA label leading to Projects.",
+              "toneHints": "Lowercase; could be 'explore projects' or 'open orbit'."
+            },
+            {
+              "key": "hero.motionToggle.on",
+              "selector": "button[data-motion-toggle='animated'] span:first-child",
+              "currentText": "animations",
+              "purpose": "Label for animation-on toggle.",
+              "toneHints": "Short system noun; can clarify 'animations on'."
+            },
+            {
+              "key": "hero.motionToggle.onState",
+              "selector": "button[data-motion-toggle='animated'] span[aria-hidden]",
+              "currentText": "ON",
+              "purpose": "Status badge when animations are enabled.",
+              "toneHints": "Two to three characters; maintain contrast with OFF state."
+            },
+            {
+              "key": "hero.motionToggle.off",
+              "selector": "button[data-motion-toggle='reduced'] span:first-child",
+              "currentText": "animations",
+              "purpose": "Label for animation-off toggle.",
+              "toneHints": "Match wording of ON toggle; optionally 'animations'."
+            },
+            {
+              "key": "hero.motionToggle.offState",
+              "selector": "button[data-motion-toggle='reduced'] span[aria-hidden]",
+              "currentText": "OFF",
+              "purpose": "Status badge when animations are reduced.",
+              "toneHints": "Keep short and high contrast."
+            }
+          ]
+        },
+        {
+          "id": "crawl",
+          "selector": "aside[data-crawl]",
+          "description": "Star Wars-inspired crawl console beside the hero.",
+          "fields": [
+            {
+              "key": "crawl.header",
+              "selector": "aside[data-crawl] header",
+              "currentText": "star wars crawl",
+              "purpose": "Panel title naming the crawl feature.",
+              "toneHints": "Lowercase mimic of terminal label; could reference 'intro crawl'."
+            },
+            {
+              "key": "crawl.paragraphs",
+              "selector": "aside[data-crawl] .crawl-inner p",
+              "currentText": [
+                "A long time ago in a galaxy far, far away...",
+                "A curious developer cat learned that the best way to ship delightful software was to pilot every console with empathy, performance, and rhythm. This repo chronicles journeys through SaaS nebulae, creative hackathons, and cosmic art experiments.",
+                "Scroll to explore planets containing professional missions, tinkering labs, and collaborations orbiting the stars."
+              ],
+              "purpose": "Narrative lines that animate in the crawl.",
+              "toneHints": "Lean into space-opera narration; consider setup, conflict, invitation."
+            },
+            {
+              "key": "crawl.toggleLabel",
+              "selector": "aside[data-crawl] button[data-crawl-toggle]",
+              "currentText": "pause crawl",
+              "purpose": "Label for the play/pause control.",
+              "toneHints": "Imperative command; pair with icon (⏸/▶)."
+            }
+          ]
+        },
+        {
+          "id": "aboutPreview",
+          "selector": "section.bg-black\\/40",
+          "description": "Preview of the About log with bullet highlights and terminal sample output.",
+          "fields": [
+            {
+              "key": "aboutPreview.heading",
+              "selector": "section.bg-black\\/40 h2",
+              "currentText": "Captain's log preview",
+              "purpose": "Section title teasing the About page.",
+              "toneHints": "Can shift to other mission log metaphors."
+            },
+            {
+              "key": "aboutPreview.body",
+              "selector": "section.bg-black\\/40 p.text-slate-200\\/80",
+              "currentText": "The About section reads like a system diary: missions shipped, technologies mastered, and favorite cosmic companions. Expect ASCII art, command-line output, and the occasional easter egg.",
+              "purpose": "Summary of what visitors will find on About page.",
+              "toneHints": "Keep descriptive and enticing; highlight structure or unique elements."
+            },
+            {
+              "key": "aboutPreview.bullets",
+              "selector": "section.bg-black\\/40 ul li",
+              "currentText": [
+                "Highlights from leading design systems and web platform teams",
+                "Experiments involving generative art, retro UI, and playful hardware",
+                "Personal coordinates to collaborate or send space mail"
+              ],
+              "purpose": "Key bullet teasers inside the preview.",
+              "toneHints": "Each line should start with action or theme; align with actual About content."
+            },
+            {
+              "key": "aboutPreview.cta",
+              "selector": "section.bg-black\\/40 a[href='about.html']",
+              "currentText": "enter log",
+              "purpose": "Secondary CTA encouraging deeper dive.",
+              "toneHints": "Two-word command; could become 'open captain.log'."
+            },
+            {
+              "key": "aboutPreview.sampleHeader",
+              "selector": "section.bg-black\\/40 .console-block header",
+              "currentText": "sample output",
+              "purpose": "Label for the sample terminal transcript.",
+              "toneHints": "Lowercase label referencing CLI output."
+            },
+            {
+              "key": "aboutPreview.sampleBody",
+              "selector": "section.bg-black\\/40 .console-block pre",
+              "currentText": "nyan@space:~$ cat experience.log\n\n> 2019-2021\n  led frontend squads @ hyperdrive labs\n  accelerated design system adoption to warp 9\n\n> 2021-2024\n  piloted platform guilds for nebulous startups\n  delivered resilient web tooling with cosmic uptime\n\n> Present\n  crafting playful experiments with accessibility at the helm",
+              "purpose": "Example terminal log snippet hinting at experience timeline.",
+              "toneHints": "Mimic CLI transcript; each block can be tuned to emphasise achievements."
+            }
+          ]
+        },
+        {
+          "id": "projectsPreview",
+          "selector": "section:last-of-type",
+          "description": "Homepage teaser for featured project planets.",
+          "fields": [
+            {
+              "key": "projectsPreview.heading",
+              "selector": "section:last-of-type h2",
+              "currentText": "Projects in orbit",
+              "purpose": "Section header for project teaser grid.",
+              "toneHints": "Space flight metaphors welcome; concise."
+            },
+            {
+              "key": "projectsPreview.body",
+              "selector": "section:last-of-type p.text-slate-200\\/80",
+              "currentText": "Each planet is a project log with mission details. Hover or tab to feel the gravitational pulse.",
+              "purpose": "Short description encouraging interaction.",
+              "toneHints": "Blend metaphor with clear direction."
+            },
+        {
+          "key": "projectsPreview.cta",
+          "selector": "section:last-of-type a[href='projects.html']",
+          "currentText": "view all",
+          "purpose": "CTA linking to full Projects page.",
+          "toneHints": "Lowercase action phrase; can be 'explore orbit'."
+        }
+      ],
+      "cards": [
+        {
+          "key": "projectsPreview.card1",
+          "titleSelector": "article[aria-label='Project: Terminal Nebula'] h3",
+          "currentTitle": "Terminal Nebula",
+          "bodySelector": "article[aria-label='Project: Terminal Nebula'] p",
+          "currentBody": "Multiplayer coding playground built for hackathons, featuring real-time pair programming and cosmic themes.",
+          "ctaSelector": "article[aria-label='Project: Terminal Nebula'] a",
+          "currentCta": null,
+          "notes": "Card without CTA button; consider adding status badge or quick stat."
+        },
+        {
+          "key": "projectsPreview.card2",
+          "titleSelector": "article[aria-label='Project: Rainbow Drive'] h3",
+          "currentTitle": "Rainbow Drive",
+          "bodySelector": "article[aria-label='Project: Rainbow Drive'] p",
+          "currentBody": "Hardware art installation synchronizing LED matrices with synthesized chip tunes and catnip-scented sensors.",
+          "ctaSelector": "article[aria-label='Project: Rainbow Drive'] a",
+          "currentCta": null,
+          "notes": "If desired, replace static copy with latest exhibition details."
+        },
+        {
+          "key": "projectsPreview.card3",
+          "titleSelector": "article[aria-label='Project: Galactic Docs API'] h3",
+          "currentTitle": "Galactic Docs API",
+          "bodySelector": "article[aria-label='Project: Galactic Docs API'] p",
+          "currentBody": "Microservice knowledge base that renders Markdown to terminal dashboards for mission control teams.",
+          "ctaSelector": "article[aria-label='Project: Galactic Docs API'] a",
+          "currentCta": null,
+          "notes": "Consider including metrics or tech stack snippet."
+        }
+      ]
+    }
+      ]
+    }
+    ,
+    "about.html": {
+      "metaDescription": "Learn about Carlos Masson’s cosmic adventures: experience log, skills, and interests wrapped in a terminal UI.",
+      "skipLink": {
+        "selector": "body > a.skip-link",
+        "currentText": "Skip to log",
+        "purpose": "Directs keyboard users to the About log content.",
+        "toneHints": "Short, command-like phrasing aligned with terminal voice."
+      },
+      "sections": [
+        {
+          "id": "bio",
+          "selector": "section[aria-labelledby='about-heading']",
+          "description": "Top-of-page identity section introducing Carlos.",
+          "fields": [
+            {
+              "key": "bio.eyebrow",
+              "selector": "section[aria-labelledby='about-heading'] p.text-sm",
+              "currentText": "whoami",
+              "purpose": "Command-style label preceding the main heading.",
+              "toneHints": "Should resemble shell command output; lower-case."
+            },
+            {
+              "key": "bio.heading",
+              "selector": "#about-heading",
+              "currentText": "Carlos Masson",
+              "purpose": "Primary heading identifying the author.",
+              "toneHints": "Full name or stylised handle; maintain readability."
+            },
+            {
+              "key": "bio.summary",
+              "selector": "section[aria-labelledby='about-heading'] p.text-slate-200\\/80",
+              "currentText": "I'm a full-stack engineer and creative technologist who loves mixing accessibility, storytelling, and playful aesthetics. My happy place is shipping features that make people grin while staying fast, reliable, and inclusive.",
+              "purpose": "Summary paragraph describing background and values.",
+              "toneHints": "Blend personable tone with professional credibility; highlight unique differentiators."
+            }
+          ]
+        },
+        {
+          "id": "experience",
+          "selector": "section[aria-labelledby='experience-heading']",
+          "description": "Timeline of key roles and achievements.",
+          "fields": [
+            {
+              "key": "experience.heading",
+              "selector": "#experience-heading",
+              "currentText": "missions accomplished",
+              "purpose": "Console-block header for the experience list.",
+              "toneHints": "Mission control terminology; lowercase preferred."
+            },
+            {
+              "key": "experience.items",
+              "selector": "section[aria-labelledby='experience-heading'] ol li",
+              "currentText": [
+                "2019 – 2021 — Hyperdrive Labs — engineered a multi-tenant design system adopted by 12+ product squads.",
+                "2021 – 2024 — Quasar Collective — led platform guilds modernizing legacy stacks into resilient Jamstack apps.",
+                "Present — Independent explorer — prototyping whimsical experiences, mentoring devs, and co-hosting creative code jams."
+              ],
+              "purpose": "Chronological bullet points summarizing past roles.",
+              "toneHints": "Each line starts with year range; emphasise measurable outcomes."
+            }
+          ]
+        },
+        {
+          "id": "skillsMatrix",
+          "selector": "section[aria-labelledby='skills-heading']",
+          "description": "Two-column list covering skills and side experiments.",
+          "fields": [
+            {
+              "key": "skills.heading",
+              "selector": "#skills-heading",
+              "currentText": "skill matrix",
+              "purpose": "Title for primary skills list.",
+              "toneHints": "Terminal-flavoured heading; can insert emoji or CLI term."
+            },
+            {
+              "key": "skills.items",
+              "selector": "article:has(#skills-heading) ul li",
+              "currentText": [
+                "TypeScript, JavaScript, React, Vue, Astro",
+                "CSS architecture, design systems, Tailwind",
+                "Accessibility audits, WCAG 2.1 AA remediation",
+                "Canvas animations, creative coding, shaders",
+                "DX tooling, component libraries, Storybook"
+              ],
+              "purpose": "List of core technical skills.",
+              "toneHints": "Comma-separated tech stack; can include short qualifiers."
+            },
+            {
+              "key": "experiments.heading",
+              "selector": "section[aria-labelledby='skills-heading'] article:nth-of-type(2) header",
+              "currentText": "fun experiments",
+              "purpose": "Title for creative experiment list.",
+              "toneHints": "Lowercase, playful label."
+            },
+            {
+              "key": "experiments.items",
+              "selector": "section[aria-labelledby='skills-heading'] article:nth-of-type(2) ul li",
+              "currentText": [
+                "Generative pixel art cat planets",
+                "Retro terminal streaming overlays",
+                "DIY synthesizer with laser-cut enclosure",
+                "Interactive story zines in DWEB",
+                "Solar-powered web installations"
+              ],
+              "purpose": "Bulleted list of personal experiments.",
+              "toneHints": "Short noun phrases; highlight whimsy and tech variety."
+            }
+          ]
+        },
+        {
+          "id": "asciiSnippet",
+          "selector": "section[aria-labelledby='ascii-heading'] pre",
+          "description": "ASCII art block acting as playful signature.",
+          "fields": [
+            {
+              "key": "ascii.art",
+              "selector": "section[aria-labelledby='ascii-heading'] pre",
+              "currentText": "_/﹋\\_\n(˚ˎ 。7\n |、˜〵\n じしˍ,)ノ  nyan-cat.space — pursuing delight at light speed",
+              "purpose": "ASCII representation of Nyan Cat with tagline.",
+              "toneHints": "Maintain ASCII styling; closing line can change to reflect current mission statement."
+            }
+          ]
+        },
+        {
+          "id": "aboutContact",
+          "selector": "section#contact.console-block",
+          "description": "Call-to-action near end of About page.",
+          "fields": [
+            {
+              "key": "aboutContact.heading",
+              "selector": "#contact-heading",
+              "currentText": "drop a transmission",
+              "purpose": "Header prompting outreach.",
+              "toneHints": "Lowercase imperative; can reference transmissions, pings, or uplinks."
+            },
+            {
+              "key": "aboutContact.body",
+              "selector": "section#contact.console-block p.text-slate-200\\/90",
+              "currentText": "Reach out for collaborations, speaking, or to swap space-themed playlists.",
+              "purpose": "Context text describing reasons to contact.",
+              "toneHints": "Invite-friendly tone; list potential collaboration vectors."
+            },
+            {
+              "key": "aboutContact.primaryCta",
+              "selector": "section#contact.console-block a[href='contact.html']",
+              "currentText": "open contact console",
+              "purpose": "Button leading to contact page.",
+              "toneHints": "Command phrase; could be 'launch contact console'."
+            },
+            {
+              "key": "aboutContact.emailDisplay",
+              "selector": "section#contact.console-block a[data-config-email]",
+              "currentText": "carlos@space.dev",
+              "purpose": "Email shown inline (synced with config).",
+              "toneHints": "Keep raw address; supporting text can change around it."
+            },
+            {
+              "key": "aboutContact.socialLinks",
+              "selector": "section#contact.console-block a[data-config-linkedin], section#contact.console-block a[data-config-github]",
+              "currentText": ["LinkedIn", "GitHub"],
+              "purpose": "Labels for social links inside About CTA.",
+              "toneHints": "Capitalize brand names; optionally append icons via unicode."
+            }
+          ]
+        }
+      ]
+    },
+    "projects.html": {
+      "metaDescription": "Browse creative experiments and professional missions orbiting the Nyan Cat Space terminal.",
+      "skipLink": {
+        "selector": "body > a.skip-link",
+        "currentText": "Skip to projects",
+        "purpose": "Jump directly to project grid on projects page.",
+        "toneHints": "Command-like; could be 'skip to project orbit'."
+      },
+      "sections": [
+        {
+          "id": "projectsHero",
+          "selector": "section[aria-labelledby='projects-heading']",
+          "description": "Introductory copy for the projects index.",
+          "fields": [
+            {
+              "key": "projectsHero.eyebrow",
+              "selector": "section[aria-labelledby='projects-heading'] p.text-sm",
+              "currentText": "project orbit",
+              "purpose": "Eyebrow label for the section.",
+              "toneHints": "Treat as directory label; lowercase."
+            },
+            {
+              "key": "projectsHero.heading",
+              "selector": "#projects-heading",
+              "currentText": "Planets & missions",
+              "purpose": "Main heading for the projects page.",
+              "toneHints": "Space-faring phrasing; can change to reflect project taxonomy."
+            },
+            {
+              "key": "projectsHero.body",
+              "selector": "section[aria-labelledby='projects-heading'] p.text-slate-200\\/80",
+              "currentText": "A collection of shipped missions, experimental prototypes, and narrative-driven playgrounds. Each planet highlights impact, tools, and cosmic learnings.",
+              "purpose": "Intro text describing what the visitor will find.",
+              "toneHints": "Two sentences ideal; spotlight variety + outcomes."
+            }
+          ]
+        },
+        {
+          "id": "projectCards",
+          "selector": "section[aria-label='Project cards']",
+          "description": "Grid of individual project summaries.",
+          "cards": [
+            {
+              "key": "projects.card.cosmicControlRoom",
+              "title": "Cosmic Control Room",
+              "description": "Led design system overhaul for mission dashboards serving 200+ analysts. Introduced accessible component tokens, cut UI defects by 45%.",
+              "ctaText": "view case study",
+              "notes": "Highlight measurable impact; CTA currently points to GitHub profile placeholder."
+            },
+            {
+              "key": "projects.card.auroraSynthLab",
+              "title": "Aurora Synth Lab",
+              "description": "Browser-based synthesizer built with Web Audio and Canvas. Features cat-triggered pads and modular effects pipeline for live shows.",
+              "statusBadge": "open-sourced experiment",
+              "notes": "Could swap badge text for release stage or link to demo."
+            },
+            {
+              "key": "projects.card.nebulaNarrativeEngine",
+              "title": "Nebula Narrative Engine",
+              "description": "Interactive fiction toolkit enabling branching stories delivered via terminal UI. Supports Markdown authoring and real-time previews.",
+              "ctaText": "source code",
+              "notes": "Consider adding callout for unique selling point (e.g., branching editor)."
+            },
+            {
+              "key": "projects.card.rainbowDriveFleet",
+              "title": "Rainbow Drive Fleet",
+              "description": "Fleet of procedurally generated cat rockets displayed at art festivals. Powered by WebGL shaders and MIDI inputs.",
+              "statusBadge": "in-flight exhibition",
+              "notes": "Status badge can reflect current tour or availability."
+            },
+            {
+              "key": "projects.card.astroAlly",
+              "title": "Astro Ally",
+              "description": "Accessibility-first companion app offering WCAG checklists and live contrast tooling inside browser panels.",
+              "ctaText": "design doc",
+              "notes": "Swap CTA to case study or live demo when available."
+            },
+            {
+              "key": "projects.card.lintInSpace",
+              "title": "Lint in Space",
+              "description": "ESLint plugin suite that enforces motion safety, color contrast, and terminal-friendly typography for web teams.",
+              "statusBadge": "tooling mission",
+              "notes": "Badge text could mention version or adoption stats."
+            }
+          ]
+        },
+        {
+          "id": "projectSpotlight",
+          "selector": "[data-markdown-target='project']",
+          "description": "Markdown-driven project spotlight with default template content.",
+          "fields": [
+            {
+              "key": "projectSpotlight.heading",
+              "selector": "[data-project-title]",
+              "currentDefault": "Starlit Console Uplink",
+              "purpose": "Title populated from Markdown frontmatter.",
+              "toneHints": "Project name should evoke mission; stands alone as H2."
+            },
+            {
+              "key": "projectSpotlight.launch",
+              "selector": "[data-project-launch]",
+              "currentDefault": "Launched 16 Jul 2025",
+              "purpose": "Launch date label (formatted via JS).",
+              "toneHints": "Use 'Launched' phrasing; date format can shift to ISO or friendly."
+            },
+            {
+              "key": "projectSpotlight.summary",
+              "selector": "[data-project-summary]",
+              "currentDefault": "Pair-programming command center that syncs commits with cosmic telemetry and keeps collaborators in flow.",
+              "purpose": "Short summary from frontmatter.",
+              "toneHints": "1-2 sentences; highlight audience + benefit."
+            },
+            {
+              "key": "projectSpotlight.techBadges",
+              "selector": "[data-project-tech] span",
+              "currentDefault": ["Vanilla JS", "Tailwind CSS", "Web Components"],
+              "purpose": "Technology tags shown as chips.",
+              "toneHints": "Keep to 1-3 words per badge."
+            }
+          ],
+          "markdownFallback": {
+            "sections": [
+              {
+                "type": "heading",
+                "level": 1,
+                "currentText": "Mission Overview",
+                "notes": "Top-level heading inside article."
+              },
+              {
+                "type": "paragraph",
+                "currentText": "The Starlit Console bridges remote collaborators through a retro terminal dashboard. Each pane renders markdown logs, commit diffs, and mission alerts in real time."
+              },
+              {
+                "type": "heading",
+                "level": 2,
+                "currentText": "Highlights"
+              },
+              {
+                "type": "list",
+                "style": "unordered",
+                "currentItems": [
+                  "Terminal-grade contrast modes with prefers-reduced-motion guards.",
+                  "Clipboard helper for sharing invite codes during live pairing.",
+                  "Offline-first caching so jump drives stay in sync even without uplink coverage."
+                ]
+              },
+              {
+                "type": "code",
+                "language": "js",
+                "currentText": "// Wormhole handshake (simplified)\nawait uplink.sync({ channel: 'mission-alpha', retries: 3 });",
+                "notes": "Shown inside <pre><code>; adjust snippet to highlight key API."
+              },
+              {
+                "type": "paragraph",
+                "currentText": "Crew feedback: \"Feels like coding from a star cruiser.\" — Beta testers at the Nebula Forge",
+                "notes": "Rendered with <strong> and <em>; keep quote short."
+              },
+              {
+                "type": "heading",
+                "level": 2,
+                "currentText": "Next Steps"
+              },
+              {
+                "type": "list",
+                "style": "ordered",
+                "currentItems": [
+                  "Expand telemetry overlay for CPU/RAM monitoring.",
+                  "Add blog stream powered by the new Markdown engine.",
+                  "Capture Playwright regression journeys once the parser is finalized."
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "blog.html": {
+      "metaDescription": "Explore Markdown-powered transmissions straight from the Nyan Cat Space terminal.",
+      "skipLink": {
+        "selector": "body > a.skip-link",
+        "currentText": "Skip to blog feed",
+        "purpose": "Skip link directing to blog main content.",
+        "toneHints": "Short and descriptive; 'feed' or 'log' terminology encouraged."
+      },
+      "sections": [
+        {
+          "id": "blogHero",
+          "selector": "section[aria-labelledby='blog-hero']",
+          "fields": [
+            {
+              "key": "blogHero.eyebrow",
+              "selector": "section[aria-labelledby='blog-hero'] p.text-sm",
+              "currentText": "captain's log",
+              "purpose": "Eyebrow label for blog hero.",
+              "toneHints": "Lowercase; can vary with 'log entry', 'transmission'."
+            },
+            {
+              "key": "blogHero.heading",
+              "selector": "#blog-hero",
+              "currentText": "Blog Launch Pad",
+              "purpose": "Main heading for blog index.",
+              "toneHints": "Should feel like a launch site; keep energetic."
+            },
+            {
+              "key": "blogHero.body",
+              "selector": "section[aria-labelledby='blog-hero'] p.text-slate-200\\/80",
+              "currentText": "Markdown transmissions live inside the repo now—no third-party CMS required. Browse recent posts below or open any entry to read the full article with the same terminal glow.",
+              "purpose": "Intro paragraph explaining blog approach.",
+              "toneHints": "Explain static Markdown workflow; reassuring and enthusiastic."
+            }
+          ]
+        },
+        {
+          "id": "blogIndex",
+          "selector": "[data-blog-index]",
+          "description": "Console block listing most recent posts (hydrated from manifest).",
+          "fields": [
+            {
+              "key": "blogIndex.eyebrow",
+              "selector": "[data-blog-index] header p.text-xs",
+              "currentText": "recent transmissions",
+              "purpose": "Label above blog list.",
+              "toneHints": "Maintain uppercase tracking; synonyms like 'latest transmissions' acceptable."
+            },
+            {
+              "key": "blogIndex.heading",
+              "selector": "#blog-index-heading",
+              "currentText": "Latest posts",
+              "purpose": "Section heading for list.",
+              "toneHints": "Clear, descriptive; can add emoji if desired."
+            },
+            {
+              "key": "blogIndex.counter",
+              "selector": "[data-blog-count]",
+              "currentText": "1 post logged",
+              "purpose": "Dynamic label showing post count.",
+              "toneHints": "Treat like system log output; update pluralisation rules as needed."
+            },
+            {
+              "key": "blogIndex.intro",
+              "selector": "[data-blog-intro]",
+              "currentText": "Posts render straight from local Markdown. Enable JavaScript for live parsing, or read the pre-rendered versions below.",
+              "purpose": "Short explanation of hydration behaviour.",
+              "toneHints": "Instructional; highlight no-JS fallback."
+            },
+            {
+              "key": "blogIndex.emptyState",
+              "selector": "[data-blog-empty]",
+              "currentText": "No posts yet. Add a Markdown file under `content/blog/` and update `content/blog/manifest.json` to surface it here.",
+              "purpose": "Fallback message when manifest is empty.",
+              "toneHints": "Developer-facing guidance; keep concise."
+            }
+          ],
+          "fallbackPost": {
+            "date": "2025-03-08",
+            "title": "Plotting the Markdown Orbit",
+            "summary": "How we swapped Sanity for local Markdown while keeping the cosmic terminal vibe intact.",
+            "tags": ["markdown", "accessibility", "tooling"],
+            "ctaText": "Read full article",
+            "notes": "Displayed before hydration; mirror manifest content structure."
+          }
+        }
+      ]
+    },
+    "contact.html": {
+      "metaDescription": "Open a direct transmission to Carlos via email from the Nyan Cat Space contact console.",
+      "skipLink": {
+        "selector": "body > a.skip-link",
+        "currentText": "Skip to contact console",
+        "purpose": "Allows users to jump straight to the console content.",
+        "toneHints": "Phrase as imperative; 'Skip to contact console' is already on-brand."
+      },
+      "sections": [
+        {
+          "id": "contactHero",
+          "selector": "section[aria-labelledby='contact-hero']",
+          "fields": [
+            {
+              "key": "contactHero.eyebrow",
+              "selector": "section[aria-labelledby='contact-hero'] p.text-sm",
+              "currentText": "open transmission",
+              "purpose": "Eyebrow label for the hero.",
+              "toneHints": "Coordinates with footer; can rotate to 'begin transmission'."
+            },
+            {
+              "key": "contactHero.heading",
+              "selector": "#contact-hero",
+              "currentText": "Contact Console",
+              "purpose": "Primary heading inviting contact.",
+              "toneHints": "Describes channel as console/terminal; keep high impact."
+            },
+            {
+              "key": "contactHero.body",
+              "selector": "section[aria-labelledby='contact-hero'] p.text-slate-200\\/80",
+              "currentText": "Ready to collaborate, chat about cosmic UX, or share a playlist? Fire up a direct email using the transmission controls below and the message will land in Carlos' inbox in a flash.",
+              "purpose": "Intro explaining ways to connect.",
+              "toneHints": "Friendly and actionable; mention value props for reaching out."
+            }
+          ]
+        },
+        {
+          "id": "contactConsole",
+          "selector": "section[data-contact-console]",
+          "description": "Interactive console offering email CTA and copy helper.",
+          "fields": [
+            {
+              "key": "contactConsole.header",
+              "selector": "section[data-contact-console] header",
+              "currentText": "transmission controls",
+              "purpose": "Section title for contact console block.",
+              "toneHints": "CLI language; lowercase."
+            },
+            {
+              "key": "contactConsole.body",
+              "selector": "section[data-contact-console] p.text-sm",
+              "currentText": "Open an email draft or copy the address if you prefer webmail. The console keeps everything accessible for keyboard and screen-reader pilots.",
+              "purpose": "Instructional copy describing console actions.",
+              "toneHints": "Inclusive language; emphasise accessibility."
+            },
+            {
+              "key": "contactConsole.emailLabel",
+              "selector": ".contact-address-label",
+              "currentText": "mission email",
+              "purpose": "Label above the displayed email address.",
+              "toneHints": "Can experiment with 'primary uplink', etc."
+            },
+            {
+              "key": "contactConsole.emailValue",
+              "selector": ".contact-address[data-config-email]",
+              "currentText": "carlos@space.dev",
+              "purpose": "Visible email string (syncs with config).",
+              "toneHints": "Keep plain for copying; surrounding text can add flair."
+            },
+            {
+              "key": "contactConsole.sendButton",
+              "selector": "a[data-config-mailto]",
+              "currentText": "send email",
+              "purpose": "Primary CTA to launch mailto link.",
+              "toneHints": "Action verb + noun; short and clear."
+            },
+            {
+              "key": "contactConsole.copyButton",
+              "selector": "button[data-copy-email]",
+              "currentText": "copy email",
+              "purpose": "Secondary action for manual copy.",
+              "toneHints": "Two-word imperative; can become 'copy address'."
+            },
+            {
+              "key": "contactConsole.hint",
+              "selector": "section[data-contact-console] p.terminal-hint:not([role])",
+              "currentText": "No default mail client? Highlight the address above or use the copy helper, then paste into your favorite webmail or messenger.",
+              "purpose": "Helper text for visitors without mail client.",
+              "toneHints": "Friendly instructions; mention keyboard accessibility."
+            },
+            {
+              "key": "contactConsole.status",
+              "selector": "section[data-contact-console] p[data-copy-status]",
+              "currentText": "Transmission status will appear here after copying the address.",
+              "purpose": "ARIA live region placeholder for copy feedback.",
+              "toneHints": "Keep present-tense; can theme as system log."
+            },
+            {
+              "key": "contactConsole.noScript",
+              "selector": "section[data-contact-console] noscript p",
+              "currentText": "JavaScript is disabled, so the copy helper is unavailable. The email address remains selectable; use your OS shortcut to copy it manually.",
+              "purpose": "Fallback message when JS is disabled.",
+              "toneHints": "Clear and practical guidance."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "templates": {
+    "projectSpotlightFallback": {
+      "description": "Static fallback article used when project Markdown fails to load.",
+      "sourceSelector": "#project-spotlight-fallback",
+      "content": [
+        "Mission Overview",
+        "The Starlit Console bridges remote collaborators through a retro terminal dashboard. Each pane renders markdown logs, commit diffs, and mission alerts in real time.",
+        "Highlights",
+        "- Terminal-grade contrast modes with prefers-reduced-motion guards.\n- Clipboard helper for sharing invite codes during live pairing.\n- Offline-first caching so jump drives stay in sync even without uplink coverage.",
+        "Code Snippet",
+        "// Wormhole handshake (simplified)\nawait uplink.sync({ channel: 'mission-alpha', retries: 3 });",
+        "Quote",
+        "Crew feedback: \"Feels like coding from a star cruiser.\" — Beta testers at the Nebula Forge",
+        "Next Steps",
+        "1. Expand telemetry overlay for CPU/RAM monitoring.\n2. Add blog stream powered by the new Markdown engine.\n3. Capture Playwright regression journeys once the parser is finalized."
+      ],
+      "notes": "Structure mirrors live Markdown render; update when spotlight project changes."
+    },
+    "blogIndexItemTemplate": {
+      "description": "Template used to hydrate additional blog list items from manifest.",
+      "sourceSelector": "#blog-index-item-2025-03-08-markdown-orbit",
+      "currentDefaults": {
+        "date": "2025-03-08",
+        "title": "Plotting the Markdown Orbit",
+        "summary": "How we swapped Sanity for local Markdown while keeping the cosmic terminal vibe intact.",
+        "tags": ["markdown", "accessibility", "tooling"],
+        "ctaText": "Read full article"
+      },
+      "notes": "When adding new posts, ensure manifest entries supply title/summary tags to replace these defaults."
+    }
+  }
+}
